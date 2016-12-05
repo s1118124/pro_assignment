@@ -1,0 +1,10 @@
+{
+  "generator-express:2.12.2": {
+    "promptValues": {
+      "type": "Basic",
+      "viewEngine": "EJS",
+      "cssPreprocessor": "None",
+      "buildTool": "Grunt"
+    }
+  }
+}

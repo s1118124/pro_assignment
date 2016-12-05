@@ -1,0 +1,64 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'https://github.com/raymondwcs/express' ]
+2 info using npm@2.7.0
+3 info using node@v4.5.0
+4 verbose config Skipping project config: /home/developer/.npmrc. (matches userconfig)
+5 silly cache add args [ 'https://github.com/raymondwcs/express', null ]
+6 verbose cache add spec https://github.com/raymondwcs/express
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: 'https://github.com/raymondwcs/express',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: 'https://github.com/raymondwcs/express',
+7 silly cache add   spec: 'https://github.com/raymondwcs/express',
+7 silly cache add   type: 'remote' }
+8 silly mapToRegistry name https://github.com/raymondwcs/express
+9 silly mapToRegistry using default registry
+10 silly mapToRegistry registry https://registry.npmjs.org/
+11 silly mapToRegistry uri https://github.com/raymondwcs/express
+12 verbose addRemoteTarball https://github.com/raymondwcs/express not in flight; adding
+13 verbose addRemoteTarball [ 'https://github.com/raymondwcs/express', null ]
+14 info retry fetch attempt 1 at 9:28:10 AM
+15 info attempt registry request try #1 at 9:28:10 AM
+16 http fetch GET https://github.com/raymondwcs/express
+17 verbose request id c9635bbdfe2f8404
+18 http fetch 406 https://github.com/raymondwcs/express
+19 error fetch failed https://github.com/raymondwcs/express
+20 warn retry will retry, error on last attempt: Error: fetch failed with status code 406
+21 info retry fetch attempt 2 at 9:28:21 AM
+22 info attempt registry request try #1 at 9:28:21 AM
+23 http fetch GET https://github.com/raymondwcs/express
+24 info retry will retry, error on last attempt: Error: socket hang up
+25 info attempt registry request try #2 at 9:28:31 AM
+26 http fetch GET https://github.com/raymondwcs/express
+27 http fetch 406 https://github.com/raymondwcs/express
+28 error fetch failed https://github.com/raymondwcs/express
+29 warn retry will retry, error on last attempt: Error: fetch failed with status code 406
+30 info retry fetch attempt 3 at 9:29:36 AM
+31 info attempt registry request try #1 at 9:29:36 AM
+32 http fetch GET https://github.com/raymondwcs/express
+33 http fetch 406 https://github.com/raymondwcs/express
+34 error fetch failed https://github.com/raymondwcs/express
+35 verbose stack Error: fetch failed with status code 406
+35 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/fetch.js:55:14)
+35 verbose stack     at emitOne (events.js:77:13)
+35 verbose stack     at Request.emit (events.js:169:7)
+35 verbose stack     at Request.onRequestResponse (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1176:10)
+35 verbose stack     at emitOne (events.js:77:13)
+35 verbose stack     at ClientRequest.emit (events.js:169:7)
+35 verbose stack     at HTTPParser.parserOnIncomingClient [as onIncoming] (_http_client.js:433:21)
+35 verbose stack     at HTTPParser.parserOnHeadersComplete (_http_common.js:103:23)
+35 verbose stack     at TLSSocket.socketOnData (_http_client.js:322:20)
+35 verbose stack     at emitOne (events.js:77:13)
+36 verbose cwd /home/developer
+37 error Linux 3.16.0-53-generic
+38 error argv "/usr/bin/nodejs" "/usr/local/bin/npm" "install" "https://github.com/raymondwcs/express"
+39 error node v4.5.0
+40 error npm  v2.7.0
+41 error fetch failed with status code 406
+42 error If you need help, you may report this error at:
+42 error     <http://github.com/npm/npm/issues>
+43 verbose exit [ 1, true ]

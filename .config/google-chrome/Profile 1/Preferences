@@ -1,0 +1,1116 @@
+0 ; i < 26 ; i++) {
+  buf1[i] = i + 97; // 97 is ASCII a
+}
+
+const buf2 = buf1.slice(0, 3);
+buf2.toString('ascii', 0, buf2.length);
+  // Returns: 'abc'
+buf1[0] = 33;
+buf2.toString('ascii', 0, buf2.length);
+  // Returns : '!bc'
+```
+
+Specifying negative indexes causes the slice to be generated relative to the
+end of the Buffer rather than the beginning.
+
+```js
+const buf = new Buffer('buffer');
+
+buf.slice(-6, -1).toString();
+  // Returns 'buffe', equivalent to buf.slice(0, 5)
+buf.slice(-6, -2).toString();
+  // Returns 'buff', equivalent to buf.slice(0, 4)
+buf.slice(-5, -2).toString();
+  // Returns 'uff', equivalent to buf.slice(1, 4)
+```
+
+### buf.toString([encoding[, start[, end]]])
+
+* `encoding` {String} Default: `'utf8'`
+* `start` {Number} Default: 0
+* `end` {Number} Default: `buffer.length`
+* Return: {String}
+
+Decodes and returns a string from the Buffer data using the specified
+character set `encoding`.
+
+```js
+const buf = new Buffer(26);
+for (var i = 0 ; i < 26 ; i++) {
+  buf[i] = i + 97; // 97 is ASCII a
+}
+buf.toString('ascii');
+  // Returns: 'abcdefghijklmnopqrstuvwxyz'
+buf.toString('ascii',0,5);
+  // Returns: 'abcde'
+buf.toString('utf8',0,5);
+  // Returns: 'abcde'
+buf.toString(undefined,0,5);
+  // Returns: 'abcde', encoding defaults to 'utf8'
+```
+
+### buf.toJSON()
+
+* Return: {Object}
+
+Returns a JSON representation of the Buffer instance.  [`JSON.stringify()`][]
+implicitly calls this function when stringifying a Buffer instance.
+
+Example:
+
+```js
+const buf = new Buffer('test');
+const json = JSON.stringify(buf);
+
+console.log(json);
+// Prints: '{"type":"Buffer","data":[116,101,115,116]}'
+
+const copy = JSON.parse(json, (key, value) => {
+    return value && value.type === 'Buffer'
+      ? new Buffer(value.data)
+      : value;
+  });
+
+console.log(copy.toString());
+// Prints: 'test'
+```
+
+### buf.values()
+
+* Return: {Iterator}
+
+Creates and returns an [iterator][] for Buffer values (bytes). This function is
+called automatically when the Buffer is used in a `for..of` statement.
+
+```js
+const buf = new Buffer('buffer');
+for (var value of buf.values()) {
+  console.log(value);
+}
+// prints:
+//   98
+//   117
+//   102
+//   102
+//   101
+//   114
+
+for (var value of buf) {
+  console.log(value);
+}
+// prints:
+//   98
+//   117
+//   102
+//   102
+//   101
+//   114
+```
+
+### buf.write(string[, offset[, length]][, encoding])
+
+* `string` {String} Bytes to be written to buffer
+* `offset` {Number} Default: 0
+* `length` {Number} Default: `buffer.length - offset`
+* `encoding` {String} Default: `'utf8'`
+* Return: {Number} Numbers of bytes written
+
+Writes `string` to the Buffer at `offset` using the given `encoding`.
+The `length` parameter is the number of bytes to write. If the Buffer did not
+contain enough space to fit the entire string, only a partial amount of the
+string will be written however, it will not write only partially encoded
+characters.
+
+```js
+const buf = new Buffer(256);
+const len = buf.write('\u00bd + \u00bc = \u00be', 0);
+console.log(`${len} bytes: ${buf.toString('utf8', 0, len)}`);
+  // Prints: 12 bytes: ½ + ¼ = ¾
+```
+
+### buf.writeDoubleBE(value, offset[, noAssert])
+### buf.writeDoubleLE(value, offset[, noAssert])
+
+* `value` {Number} Bytes to be written to Buffer
+* `offset` {Number} `0 <= offset <= buf.length - 8`
+* `noAssert` {Boolean} Default: false
+* Return: {Number} The offset plus the number of written bytes
+
+Writes `value` to the Buffer at the specified `offset` with specified endian
+format (`writeDoubleBE()` writes big endian, `writeDoubleLE()` writes little
+endian). The `value` argument *should* be a valid 64-bit double. Behavior is
+not defined when `value` is anything other than a 64-bit double.
+
+Set `noAssert` to true to skip validation of `value` and `offset`. This means
+that `value` may be too large for the specific function and `offset` may be
+beyond the end of the Buffer leading to the values being silently dropped. This
+should not be used unless you are certain of correctness.
+
+Example:
+
+```js
+const buf = new Buffer(8);
+buf.writeDoubleBE(0xdeadbeefcafebabe, 0);
+
+console.log(buf);
+  // Prints: <Buffer 43 eb d5 b7 dd f9 5f d7>
+
+buf.writeDoubleLE(0xdeadbeefcafebabe, 0);
+
+console.log(buf);
+  // Prints: <Buffer d7 5f f9 dd b7 d5 eb 43>
+```
+
+### buf.writeFloatBE(value, offset[, noAssert])
+### buf.writeFloatLE(value, offset[, noAssert])
+
+* `value` {Number} Bytes to be written to Buffer
+* `offset` {Number} `0 <= offset <= buf.length - 4`
+* `noAssert` {Boolean} Default: false
+* Return: {Number} The offset plus the number of written bytes
+
+Writes `value` to the Buffer at the specified `offset` with specified endian
+format (`writeFloatBE()` writes big endian, `writeFloatLE()` writes little
+endian). Behavior is not defined when `value` is anything other than a 32-bit
+float.
+
+Set `noAssert` to true to skip validation of `value` and `offset`. This means
+that `value` may be too large for the specific function and `offset` may be
+beyond the end of the Buffer leading to the values being silently dropped. This
+should not be used unless you are certain of correctness.
+
+Example:
+
+```js
+const buf = new Buffer(4);
+buf.writeFloatBE(0xcafebabe, 0);
+
+console.log(buf);
+  // Prints: <Buffer 4f 4a fe bb>
+
+buf.writeFloatLE(0xcafebabe, 0);
+
+console.log(buf);
+  // Prints: <Buffer bb fe 4a 4f>
+```
+
+### buf.writeInt8(value, offset[, noAssert])
+
+* `value` {Number} Bytes to be written to Buffer
+* `offset` {Number} `0 <= offset <= buf.length - 1`
+* `noAssert` {Boolean} Default: false
+* Return: {Number} The offset plus the number of written bytes
+
+Writes `value` to the Buffer at the specified `offset`. The `value` should be a
+valid signed 8-bit integer.  Behavior is not defined when `value` is anything
+other than a signed 8-bit integer.
+
+Set `noAssert` to true to skip validation of `value` and `offset`. This means
+that `value` may be too large for the specific function and `offset` may be
+beyond the end of the Buffer leading to the values being silently dropped. This
+should not be used unless you are certain of correctness.
+
+The `value` is interpreted and written as a two's complement signed integer.
+
+```js
+const buf = new Buffer(2);
+buf.writeInt8(2, 0);
+buf.writeInt8(-2, 1);
+console.log(buf);
+  // Prints: <Buffer 02 fe>
+```
+
+### buf.writeInt16BE(value, offset[, noAssert])
+### buf.writeInt16LE(value, offset[, noAssert])
+
+* `value` {Number} Bytes to be written to Buffer
+* `offset` {Number} `0 <= offset <= buf.length - 2`
+* `noAssert` {Boolean} Default: false
+* Return: {Number} The offset plus the number of written bytes
+
+Writes `value` to the Buffer at the specified `offset` with specified endian
+format (`writeInt16BE()` writes big endian, `writeInt16LE()` writes little
+endian). The `value` should be a valid signed 16-bit integer. Behavior is
+not defined when `value` is anything other than a signed 16-bit integer.
+
+Set `noAssert` to true to skip validation of `value` and `offset`. This means
+that `value` may be too large for the specific function and `offset` may be
+beyond the end of the Buffer leading to the values being silently dropped. This
+should not be used unless you are certain of correctness.
+
+The `value` is interpreted and written as a two's complement signed integer.
+
+```js
+const buf = new Buffer(4);
+buf.writeInt16BE(0x0102,0);
+buf.writeInt16LE(0x0304,2);
+console.log(buf);
+  // Prints: <Buffer 01 02 04 03>
+```
+
+### buf.writeInt32BE(value, offset[, noAssert])
+### buf.writeInt32LE(value, offset[, noAssert])
+
+* `value` {Number} Bytes to be written to Buffer
+* `offset` {Number} `0 <= offset <= buf.length - 4`
+* `noAssert` {Boolean} Default: false
+* Return: {Number} The offset plus the number of written bytes
+
+Writes `value` to the Buffer at the specified `offset` with specified endian
+format (`writeInt32BE()` writes big endian, `writeInt32LE()` writes little
+endian). The `value` should be a valid signed 32-bit integer. Behavior is
+not defined when `value` is anything other than a signed 32-bit integer.
+
+Set `noAssert` to true to skip validation of `value` and `offset`. This means
+that `value` may be too large for the specific function and `offset` may be
+beyond the end of the Buffer leading to the values being silently dropped. This
+should not be used unless you are certain of correctness.
+
+The `value` is interpreted and written as a two's complement signed integer.
+
+```js
+const buf = new Buffer(8);
+buf.writeInt32BE(0x01020304,0);
+buf.writeInt32LE(0x05060708,4);
+console.log(buf);
+  // Prints: <Buffer 01 02 03 04 08 07 06 05>
+```
+
+### buf.writeIntBE(value, offset, byteLength[, noAssert])
+### buf.writeIntLE(value, offset, byteLength[, noAssert])
+
+* `value` {Number} Bytes to be written to Buffer
+* `offset` {Number} `0 <= offset <= buf.length - byteLength`
+* `byteLength` {Number} `0 < byteLength <= 6`
+* `noAssert` {Boolean} Default: false
+* Return: {Number} The offset plus the number of written bytes
+
+Writes `value` to the Buffer at the specified `offset` and `byteLength`.
+Supports up to 48 bits of accuracy. For example:
+
+```js
+const buf1 = new Buffer(6);
+buf1.writeUIntBE(0x1234567890ab, 0, 6);
+console.log(buf1);
+  // Prints: <Buffer 12 34 56 78 90 ab>
+
+const buf2 = new Buffer(6);
+buf2.writeUIntLE(0x1234567890ab, 0, 6);
+console.log(buf2);
+  // Prints: <Buffer ab 90 78 56 34 12>
+```
+
+Set `noAssert` to true to skip validation of `value` and `offset`. This means
+that `value` may be too large for the specific function and `offset` may be
+beyond the end of the Buffer leading to the values being silently dropped. This
+should not be used unless you are certain of correctness.
+
+Behavior is not defined when `value` is anything other than an integer.
+
+### buf.writeUInt8(value, offset[, noAssert])
+
+* `value` {Number} Bytes to be written to Buffer
+* `offset` {Number} `0 <= offset <= buf.length - 1`
+* `noAssert` {Boolean} Default: false
+* Return: {Number} The offset plus the number of written bytes
+
+Writes `value` to the Buffer at the specified `offset`. The `value` should be a
+valid unsigned 8-bit integer.  Behavior is not defined when `value` is anything
+other than an unsigned 8-bit integer.
+
+Set `noAssert` to true to skip validation of `value` and `offset`. This means
+that `value` may be too large for the specific function and `offset` may be
+beyond the end of the Buffer leading to the values being silently dropped. This
+should not be used unless you are certain of correctness.
+
+Example:
+
+```js
+const buf = new Buffer(4);
+buf.writeUInt8(0x3, 0);
+buf.writeUInt8(0x4, 1);
+buf.writeUInt8(0x23, 2);
+buf.writeUInt8(0x42, 3);
+
+console.log(buf);
+  // Prints: <Buffer 03 04 23 42>
+```
+
+### buf.writeUInt16BE(value, offset[, noAssert])
+### buf.writeUInt16LE(value, offset[, noAssert])
+
+* `value` {Number} Bytes to be written to Buffer
+* `offset` {Number} `0 <= offset <= buf.length - 2`
+* `noAssert` {Boolean} Default: false
+* Return: {Number} The offset plus the number of written bytes
+
+Writes `value` to the Buffer at the specified `offset` with specified endian
+format (`writeUInt16BE()` writes big endian, `writeUInt16LE()` writes little
+endian). The `value` should be a valid unsigned 16-bit integer. Behavior is
+not defined when `value` is anything other than an unsigned 16-bit integer.
+
+Set `noAssert` to true to skip validation of `value` and `offset`. This means
+that `value` may be too large for the specific function and `offset` may be
+beyond the end of the Buffer leading to the values being silently dropped. This
+should not be used unless you are certain of correctness.
+
+Example:
+
+```js
+const buf = new Buffer(4);
+buf.writeUInt16BE(0xdead, 0);
+buf.writeUInt16BE(0xbeef, 2);
+
+console.log(buf);
+  // Prints: <Buffer de ad be ef>
+
+buf.writeUInt16LE(0xdead, 0);
+buf.writeUInt16LE(0xbeef, 2);
+
+console.log(buf);
+  // Prints: <Buffer ad de ef be>
+```
+
+### buf.writeUInt32BE(value, offset[, noAssert])
+### buf.writeUInt32LE(value, offset[, noAssert])
+
+* `value` {Number} Bytes to be written to Buffer
+* `offset` {Number} `0 <= offset <= buf.length - 4`
+* `noAssert` {Boolean} Default: false
+* Return: {Number} The offset plus the number of written bytes
+
+Writes `value` to the Buffer at the specified `offset` with specified endian
+format (`writeUInt32BE()` writes big endian, `writeUInt32LE()` writes little
+endian). The `value` should be a valid unsigned 32-bit integer. Behavior is
+not defined when `value` is anything other than an unsigned 32-bit integer.
+
+Set `noAssert` to true to skip validation of `value` and `offset`. This means
+that `value` may be too large for the specific function and `offset` may be
+beyond the end of the Buffer leading to the values being silently dropped. This
+should not be used unless you are certain of correctness.
+
+Example:
+
+```js
+const buf = new Buffer(4);
+buf.writeUInt32BE(0xfeedface, 0);
+
+console.log(buf);
+  // Prints: <Buffer fe ed fa ce>
+
+buf.writeUInt32LE(0xfeedface, 0);
+
+console.log(buf);
+  // Prints: <Buffer ce fa ed fe>
+```
+
+### buf.writeUIntBE(value, offset, byteLength[, noAssert])
+### buf.writeUIntLE(value, offset, byteLength[, noAssert])
+
+* `value` {Number} Bytes to be written to Buffer
+* `offset` {Number} `0 <= offset <= buf.length - byteLength`
+* `byteLength` {Number} `0 < byteLength <= 6`
+* `noAssert` {Boolean} Default: false
+* Return: {Number} The offset plus the number of written bytes
+
+Writes `value` to the Buffer at the specified `offset` and `byteLength`.
+Supports up to 48 bits of accuracy. For example:
+
+```js
+const buf = new Buffer(6);
+buf.writeUIntBE(0x1234567890ab, 0, 6);
+console.log(buf);
+  // Prints: <Buffer 12 34 56 78 90 ab>
+```
+
+Set `noAssert` to true to skip validation of `value` and `offset`. This means
+that `value` may be too large for the specific function and `offset` may be
+beyond the end of the Buffer leading to the values being silently dropped. This
+should not be used unless you are certain of correctness.
+
+Behavior is not defined when `value` is anything other than an unsigned integer.
+
+## buffer.INSPECT_MAX_BYTES
+
+* {Number} Default: 50
+
+Returns the maximum number of bytes that will be returned when
+`buffer.inspect()` is called. This can be overridden by user modules. See
+[`util.inspect()`][] for more details on `buffer.inspect()` behavior.
+
+Note that this is a property on the `buffer` module as returned by
+`require('buffer')`, not on the Buffer global or a Buffer instance.
+
+## Class: SlowBuffer
+
+Returns an un-pooled `Buffer`.
+
+In order to avoid the garbage collection overhead of creating many individually
+allocated Buffers, by default allocations under 4KB are sliced from a single
+larger allocated object. This approach improves both performance and memory
+usage since v8 does not need to track and cleanup as many `Persistent` objects.
+
+In the case where a developer may need to retain a small chunk of memory from a
+pool for an indeterminate amount of time, it may be appropriate to create an
+un-pooled Buffer instance using `SlowBuffer` then copy out the relevant bits.
+
+```js
+// need to keep around a few small chunks of memory
+const store = [];
+
+socket.on('readable', () => {
+  var data = socket.read();
+  // allocate for retained data
+  var sb = new SlowBuffer(10);
+  // copy the data into the new allocation
+  data.copy(sb, 0, 0, 10);
+  store.push(sb);
+});
+```
+
+Use of `SlowBuffer` should be used only as a last resort *after* a developer
+has observed undue memory retention in their applications.
+
+[`Array#includes()`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+[`Array#indexOf()`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
+[`buf.entries()`]: #buffer_buf_entries
+[`buf.fill(0)`]: #buffer_buf_fill_value_offset_end
+[`buf.keys()`]: #buffer_buf_keys
+[`buf.slice()`]: #buffer_buf_slice_start_end
+[`buf.values()`]: #buffer_buf_values
+[`buf1.compare(buf2)`]: #buffer_buf_compare_otherbuffer
+[`JSON.stringify()`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+[`RangeError`]: errors.html#errors_class_rangeerror
+[`String.prototype.length`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length
+[`util.inspect()`]: util.html#util_util_inspect_object_options
+[iterator]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
+[RFC 4648, Section 5]: https://tools.ietf.org/html/rfc4648#section-5
+                                                                                    <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Usage Node.js v4.4.7 Manual &amp; Documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/sh.css">
+  <link rel="canonical" href="https://nodejs.org/api/synopsis.html">
+</head>
+<body class="alt apidoc" id="api-section-synopsis">
+  <div id="content" class="clearfix">
+    <div id="column2" class="interior">
+      <div id="intro" class="interior">
+        <a href="/" title="Go back to the home page">
+          Node.js
+        </a>
+      </div>
+      <ul>
+<li><a class="nav-documentation" href="documentation.html">About these Docs</a></li>
+<li><a class="nav-synopsis active" href="synopsis.html">Usage &amp; Example</a></li>
+</ul>
+<div class="line"></div>
+
+<ul>
+<li><a class="nav-assert" href="assert.html">Assertion Testing</a></li>
+<li><a class="nav-buffer" href="buffer.html">Buffer</a></li>
+<li><a class="nav-addons" href="addons.html">C/C++ Addons</a></li>
+<li><a class="nav-child_process" href="child_process.html">Child Processes</a></li>
+<li><a class="nav-cluster" href="cluster.html">Cluster</a></li>
+<li><a class="nav-cli" href="cli.html">Command Line Options</a></li>
+<li><a class="nav-console" href="console.html">Console</a></li>
+<li><a class="nav-crypto" href="crypto.html">Crypto</a></li>
+<li><a class="nav-debugger" href="debugger.html">Debugger</a></li>
+<li><a class="nav-dns" href="dns.html">DNS</a></li>
+<li><a class="nav-domain" href="domain.html">Domain</a></li>
+<li><a class="nav-errors" href="errors.html">Errors</a></li>
+<li><a class="nav-events" href="events.html">Events</a></li>
+<li><a class="nav-fs" href="fs.html">File System</a></li>
+<li><a class="nav-globals" href="globals.html">Globals</a></li>
+<li><a class="nav-http" href="http.html">HTTP</a></li>
+<li><a class="nav-https" href="https.html">HTTPS</a></li>
+<li><a class="nav-modules" href="modules.html">Modules</a></li>
+<li><a class="nav-net" href="net.html">Net</a></li>
+<li><a class="nav-os" href="os.html">OS</a></li>
+<li><a class="nav-path" href="path.html">Path</a></li>
+<li><a class="nav-process" href="process.html">Process</a></li>
+<li><a class="nav-punycode" href="punycode.html">Punycode</a></li>
+<li><a class="nav-querystring" href="querystring.html">Query Strings</a></li>
+<li><a class="nav-readline" href="readline.html">Readline</a></li>
+<li><a class="nav-repl" href="repl.html">REPL</a></li>
+<li><a class="nav-stream" href="stream.html">Stream</a></li>
+<li><a class="nav-string_decoder" href="string_decoder.html">String Decoder</a></li>
+<li><a class="nav-timers" href="timers.html">Timers</a></li>
+<li><a class="nav-tls" href="tls.html">TLS/SSL</a></li>
+<li><a class="nav-tty" href="tty.html">TTY</a></li>
+<li><a class="nav-dgram" href="dgram.html">UDP/Datagram</a></li>
+<li><a class="nav-url" href="url.html">URL</a></li>
+<li><a class="nav-util" href="util.html">Utilities</a></li>
+<li><a class="nav-v8" href="v8.html">V8</a></li>
+<li><a class="nav-vm" href="vm.html">VM</a></li>
+<li><a class="nav-zlib" href="zlib.html">ZLIB</a></li>
+</ul>
+<div class="line"></div>
+
+<ul>
+<li><a class="nav-https-github-com-nodejs-node" href="https://github.com/nodejs/node">GitHub Repo &amp; Issue Tracker</a></li>
+<li><a class="nav-http-groups-google-com-group-nodejs" href="http://groups.google.com/group/nodejs">Mailing List</a></li>
+</ul>
+
+    </div>
+
+    <div id="column1" data-id="synopsis" class="interior">
+      <header>
+        <h1>Node.js v4.4.7 Documentation</h1>
+        <div id="gtoc">
+          <p>
+            <a href="index.html" name="toc">Index</a> |
+            <a href="all.html">View on single page</a> |
+            <a href="synopsis.json">View as JSON</a>
+          </p>
+        </div>
+        <hr>
+      </header>
+
+      <div id="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+<li><a href="#synopsis_usage">Usage</a><ul>
+<li><a href="#synopsis_example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+
+      <div id="apicontent">
+        <h1>Usage<span><a class="mark" href="#synopsis_usage" id="synopsis_usage">#</a></span></h1>
+<!--type=misc-->
+
+<p><code>node [options] [v8 options] [script.js | -e &quot;script&quot;] [arguments]</code>
+
+</p>
+<p>Please see the <a href="cli.html#cli_command_line_options">Command Line Options</a> document for information about
+different options and ways to run scripts with Node.
+
+</p>
+<h2>Example<span><a class="mark" href="#synopsis_example" id="synopsis_example">#</a></span></h2>
+<p>An example of a <a href="http.html">web server</a> written with Node.js which responds with
+<code>&#39;Hello World&#39;</code>:
+
+</p>
+<pre><code class="js">const http = require(&#39;http&#39;);
+
+const hostname = &#39;127.0.0.1&#39;;
+const port = 3000;
+
+const server = http.createServer((req, res) =&gt; {
+  res.statusCode = 200;
+  res.setHeader(&#39;Content-Type&#39;, &#39;text/plain&#39;);
+  res.end(&#39;Hello World\n&#39;);
+});
+
+server.listen(port, hostname, () =&gt; {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});</code></pre>
+<p>To run the server, put the code into a file called <code>example.js</code> and execute
+it with Node.js:
+
+</p>
+<pre><code>$ node example.js
+Server running at http://127.0.0.1:3000/</code></pre>
+<p>All of the examples in the documentation can be run similarly.
+
+</p>
+
+      </div>
+    </div>
+  </div>
+  <script src="assets/sh_main.js"></script>
+  <script src="assets/sh_javascript.min.js"></script>
+  <script>highlight(undefined, undefined, 'pre');</script>
+</body>
+</html>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {
+  "source": "doc/api/console.markdown",
+  "modules": [
+    {
+      "textRaw": "Console",
+      "name": "console",
+      "stability": 2,
+      "stabilityText": "Stable",
+      "desc": "<p>The <code>console</code> module provides a simple debugging console that is similar to the\nJavaScript console mechanism provided by web browsers.\n\n</p>\n<p>The module exports two specific components:\n\n</p>\n<ul>\n<li>A <code>Console</code> class with methods such as <code>console.log()</code>, <code>console.error()</code> and\n<code>console.warn()</code> that can be used to write to any Node.js stream.</li>\n<li>A global <code>console</code> instance configured to write to <code>stdout</code> and <code>stderr</code>.\nBecause this object is global, it can be used without calling\n<code>require(&#39;console&#39;)</code>.</li>\n</ul>\n<p>Example using the global <code>console</code>:\n\n</p>\n<pre><code class=\"js\">console.log(&#39;hello world&#39;);\n  // Prints: hello world, to stdout\nconsole.log(&#39;hello %s&#39;, &#39;world&#39;);\n  // Prints: hello world, to stdout\nconsole.error(new Error(&#39;Whoops, something bad happened&#39;));\n  // Prints: [Error: Whoops, something bad happened], to stderr\n\nconst name = &#39;Will Robinson&#39;;\nconsole.warn(`Danger ${name}! Danger!`);\n  // Prints: Danger Will Robinson! Danger!, to stderr</code></pre>\n<p>Example using the <code>Console</code> class:\n\n</p>\n<pre><code class=\"js\">const out = getStreamSomehow();\nconst err = getStreamSomehow();\nconst myConsole = new console.Console(out, err);\n\nmyConsole.log(&#39;hello world&#39;);\n  // Prints: hello world, to out\nmyConsole.log(&#39;hello %s&#39;, &#39;world&#39;);\n  // Prints: hello world, to out\nmyConsole.error(new Error(&#39;Whoops, something bad happened&#39;));\n  // Prints: [Error: Whoops, something bad happened], to err\n\nconst name = &#39;Will Robinson&#39;;\nmyConsole.warn(`Danger ${name}! Danger!`);\n  // Prints: Danger Will Robinson! Danger!, to err</code></pre>\n<p>While the API for the <code>Console</code> class is designed fundamentally around the\nbrowser <code>console</code> object, the <code>Console</code> in Node.js is <em>not</em> intended to\nduplicate the browser&#39;s functionality exactly.\n\n</p>\n",
+      "modules": [
+        {
+          "textRaw": "Asynchronous vs Synchronous Consoles",
+          "name": "asynchronous_vs_synchronous_consoles",
+          "desc": "<p>The console functions are asynchronous unless the destination is a file.\nDisks are fast and operating systems normally employ write-back caching;\nit should be a very rare occurrence indeed that a write blocks, but it\nis possible.\n\n</p>\n",
+          "type": "module",
+          "displayName": "Asynchronous vs Synchronous Consoles"
+        }
+      ],
+      "classes": [
+        {
+          "textRaw": "Class: Console",
+          "type": "class",
+          "name": "Console",
+          "desc": "<p>The <code>Console</code> class can be used to create a simple logger with configurable\noutput streams and can be accessed using either <code>require(&#39;console&#39;).Console</code>\nor <code>console.Console</code>:\n\n</p>\n<pre><code class=\"js\">const Console = require(&#39;console&#39;).Console;\nconst Console = console.Console;</code></pre>\n",
+          "methods": [
+            {
+              "textRaw": "console.assert(value[, message][, ...])",
+              "type": "method",
+              "name": "assert",
+              "desc": "<p>A simple assertion test that verifies whether <code>value</code> is truthy. If it is not,\nan <code>AssertionError</code> is thrown. If provided, the error <code>message</code> is formatted\nusing [<code>util.format()</code>][] and used as the error message.\n\n</p>\n<pre><code class=\"js\">console.assert(true, &#39;does nothing&#39;);\n  // OK\nconsole.assert(false, &#39;Whoops %s&#39;, &#39;didn\\&#39;t work&#39;);\n  // AssertionError: Whoops didn&#39;t work</code></pre>\n<p><em>Note: the <code>console.assert()</code> method is implemented differently in Node.js\nthan the <code>console.assert()</code> method [available in browsers][web-api-assert].</em>\n\n</p>\n<p>Specifically, in browsers, calling <code>console.assert()</code> with a falsy\nassertion will cause the <code>message</code> to be printed to the console without\ninterrupting execution of subsequent code. In Node.js, however, a falsy\nassertion will cause an <code>AssertionError</code> to be thrown.\n\n</p>\n<p>Functionality approximating that implemented by browsers can be implemented\nby extending Node.js&#39; <code>console</code> and overriding the <code>console.assert()</code> method.\n\n</p>\n<p>In the following example, a simple module is created that extends and overrides\nthe default behavior of <code>console</code> in Node.js.\n\n</p>\n<pre><code class=\"js\">&#39;use strict&#39;;\n\n// Creates a simple extension of console with a\n// new impl for assert without monkey-patching.\nconst myConsole = Object.setPrototypeOf({\n  assert(assertion, message, ...args) {\n    try {\n      console.assert(assertion, message, ...args);\n    } catch (err) {\n      console.error(err.stack);\n    }\n  }\n}, console);\n\nmodule.exports = myConsole;</code></pre>\n<p>This can then be used as a direct replacement for the built in console:\n\n</p>\n<pre><code class=\"js\">const console = require(&#39;./myConsole&#39;);\nconsole.assert(false, &#39;this message will print, but no error thrown&#39;);\nconsole.log(&#39;this will also print&#39;);</code></pre>\n",
+              "signatures": [
+                {
+                  "params": [
+                    {
+                      "name": "value"
+                    },
+                    {
+                      "name": "message",
+                      "optional": true
+                    },
+                    {
+                      "name": "...",
+                      "optional": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "textRaw": "console.dir(obj[, options])",
+              "type": "method",
+              "name": "dir",
+              "desc": "<p>Uses [<code>util.inspect()</code>][] on <code>obj</code> and prints the resulting string to <code>stdout</code>.\nThis function bypasses any custom <code>inspect()</code> function defined on <code>obj</code>. An\noptional <code>options</code> object may be passed to alter certain aspects of the\nformatted string:\n\n</p>\n<ul>\n<li><p><code>showHidden</code> - if <code>true</code> then the object&#39;s non-enumerable and symbol\nproperties will be shown too. Defaults to <code>false</code>.</p>\n</li>\n<li><p><code>depth</code> - tells [<code>util.inspect()</code>][] how many times to recurse while\nformatting the object. This is useful for inspecting large complicated objects.\nDefaults to <code>2</code>. To make it recurse indefinitely, pass <code>null</code>.</p>\n</li>\n<li><p><code>colors</code> - if <code>true</code>, then the output will be styled with ANSI color codes.\nDefaults to <code>false</code>. Colors are customizable; see\n[customizing <code>util.inspect()</code> colors][].</p>\n</li>\n</ul>\n",
+              "signatures": [
+                {
+                  "params": [
+                    {
+                      "name": "obj"
+                    },
+                    {
+                      "name": "options",
+                      "optional": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "textRaw": "console.error([data][, ...])",
+              "type": "method",
+              "name": "error",
+              "desc": "<p>Prints to <code>stderr</code> with newline. Multiple arguments can be passed, with the\nfirst used as the primary message and all additional used as substitution\nvalues similar to <code>printf(3)</code> (the arguments are all passed to\n[<code>util.format()</code>][]).\n\n</p>\n<pre><code class=\"js\">const code = 5;\nconsole.error(&#39;error #%d&#39;, code);\n  // Prints: error #5, to stderr\nconsole.error(&#39;error&#39;, code);\n  // Prints: error 5, to stderr</code></pre>\n<p>If formatting elements (e.g. <code>%d</code>) are not found in the first string then\n[<code>util.inspect()</code>][] is called on each argument and the resulting string\nvalues are concatenated. See [<code>util.format()</code>][] for more information.\n\n</p>\n",
+              "signatures": [
+                {
+                  "params": [
+                    {
+                      "name": "data",
+                      "optional": true
+                    },
+                    {
+                      "name": "...",
+                      "optional": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "textRaw": "console.info([data][, ...])",
+              "type": "method",
+              "name": "info",
+              "desc": "<p>The <code>console.info()</code> function is an alias for [<code>console.log()</code>][].\n\n</p>\n",
+              "signatures": [
+                {
+                  "params": [
+                    {
+                      "name": "data",
+                      "optional": true
+                    },
+                    {
+                      "name": "...",
+                      "optional": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "textRaw": "console.log([data][, ...])",
+              "type": "method",
+              "name": "log",
+              "desc": "<p>Prints to <code>stdout</code> with newline. Multiple arguments can be passed, with the\nfirst used as the primary message and all additional used as substitution\nvalues similar to <code>printf(3)</code> (the arguments are all passed to\n[<code>util.format()</code>][]).\n\n</p>\n<pre><code class=\"js\">var count = 5;\nconsole.log(&#39;count: %d&#39;, count);\n  // Prints: count: 5, to stdout\nconsole.log(&#39;count: &#39;, count);\n  // Prints: count: 5, to stdout</code></pre>\n<p>If formatting elements (e.g. <code>%d</code>) are not found in the first string then\n[<code>util.inspect()</code>][] is called on each argument and the resulting string\nvalues are concatenated. See [<code>util.format()</code>][] for more information.\n\n</p>\n",
+              "signatures": [
+                {
+                  "params": [
+                    {
+                      "name": "data",
+                      "optional": true
+                    },
+                    {
+                      "name": "...",
+                      "optional": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "textRaw": "console.time(label)",
+              "type": "method",
+              "name": "time",
+              "desc": "<p>Used to calculate the duration of a specific operation. To start a timer, call\nthe <code>console.time()</code> method, giving it a unique <code>label</code> as the only parameter. To stop the\ntimer, and to get the elapsed time in milliseconds, just call the\n[<code>console.timeEnd()</code>][] method, again passing the\ntimer&#39;s unique <code>label</code> as the parameter.\n\n</p>\n",
+              "signatures": [
+                {
+                  "params": [
+                    {
+                      "name": "label"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "textRaw": "console.timeEnd(label)",
+              "type": "method",
+              "name": "timeEnd",
+              "desc": "<p>Stops a timer that was previously started by calling [<code>console.time()</code>][] and\nprints the result to stdout:\n\n</p>\n<pre><code class=\"js\">console.time(&#39;100-elements&#39;);\nfor (var i = 0; i &lt; 100; i++) {\n  ;\n}\nconsole.timeEnd(&#39;100-elements&#39;);\n// prints 100-elements: 262ms</code></pre>\n",
+              "signatures": [
+                {
+                  "params": [
+                    {
+                      "name": "label"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "textRaw": "console.trace(message[, ...])",
+              "type": "method",
+              "name": "trace",
+              "desc": "<p>Prints to <code>stderr</code> the string <code>&#39;Trace :&#39;</code>, followed by the [<code>util.format()</code>][]\nformatted message and stack trace to the current position in the code.\n\n</p>\n<pre><code class=\"js\">console.trace(&#39;Show me&#39;);\n  // Prints: (stack trace will vary based on where trace is called)\n  //  Trace: Show me\n  //    at repl:2:9\n  //    at REPLServer.defaultEval (repl.js:248:27)\n  //    at bound (domain.js:287:14)\n  //    at REPLServer.runBound [as eval] (domain.js:300:12)\n  //    at REPLServer.&lt;anonymous&gt; (repl.js:412:12)\n  //    at emitOne (events.js:82:20)\n  //    at REPLServer.emit (events.js:169:7)\n  //    at REPLServer.Interface._onLine (readline.js:210:10)\n  //    at REPLServer.Interface._line (readline.js:549:8)\n  //    at REPLServer.Interface._ttyWrite (readline.js:826:14)</code></pre>\n",
+              "signatures": [
+                {
+                  "params": [
+                    {
+                      "name": "message"
+                    },
+                    {
+                      "name": "...",
+                      "optional": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "textRaw": "console.warn([data][, ...])",
+              "type": "method",
+              "name": "warn",
+              "desc": "<p>The <code>console.warn()</code> function is an alias for [<code>console.error()</code>][].\n\n</p>\n",
+              "signatures": [
+                {
+                  "params": [
+                    {
+                      "name": "data",
+                      "optional": true
+                    },
+                    {
+                      "name": "...",
+                      "optional": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "signatures": [
+            {
+              "params": [
+                {
+                  "name": "stdout"
+                },
+                {
+                  "name": "stderr",
+                  "optional": true
+                }
+              ],
+              "desc": "<p>Creates a new <code>Console</code> by passing one or two writable stream instances.\n<code>stdout</code> is a writable stream to print log or info output. <code>stderr</code>\nis used for warning or error output. If <code>stderr</code> isn&#39;t passed, warning and error\noutput will be sent to <code>stdout</code>.\n\n</p>\n<pre><code class=\"js\">const output = fs.createWriteStream(&#39;./stdout.log&#39;);\nconst errorOutput = fs.createWriteStream(&#39;./stderr.log&#39;);\n// custom simple logger\nconst logger = new Console(output, errorOutput);\n// use it like console\nvar count = 5;\nlogger.log(&#39;count: %d&#39;, count);\n// in stdout.log: count 5</code></pre>\n<p>The global <code>console</code> is a special <code>Console</code> whose output is sent to\n[<code>process.stdout</code>][] and [<code>process.stderr</code>][]. It is equivalent to calling:\n\n</p>\n<pre><code class=\"js\">new Console(process.stdout, process.stderr);</code></pre>\n"
+            }
+          ]
+        }
+      ],
+      "type": "module",
+      "displayName": "Console"
+    }
+  ]
+}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              # Errors
+
+<!--type=misc-->
+
+Applications running in Node.js will generally experience four categories of
+errors:
+
+- Standard JavaScript errors such as:
+  - {EvalError} : thrown when a call to `eval()` fails.
+  - {SyntaxError} : thrown in response to improper JavaScript language
+    syntax.
+  - {RangeError} : thrown when a value is not within an expected range
+  - {ReferenceError} : thrown when using undefined variables
+  - {TypeError} : thrown when passing arguments of the wrong type
+  - {URIError} : thrown when a global URI handling function is misused.
+- System errors triggered by underlying operating system constraints such
+  as attempting to open a file that does not exist, attempting to send data
+  over a closed socket, etc;
+- And User-specified errors triggered by application code.
+- Assertion Errors are a special class of error that can be triggered whenever
+  Node.js detects an exceptional logic violation that should never occur. These
+  are raised typically by the `assert` module.
+
+All JavaScript and System errors raised by Node.js inherit from, or are
+instances of, the standard JavaScript {Error} class and are guaranteed
+to provide *at least* the properties available on that class.
+
+## Error Propagation and Interception
+
+<!--type=misc-->
+
+Node.js supports several mechanisms for propagating and handling errors that
+occur while an application is running. How these errors are reported and
+handled depends entirely on the type of Error and the style of the API that is
+called.
+
+All JavaScript errors are handled as exceptions that *immediately* generate
+and throw an error using the standard JavaScript `throw` mechanism. These
+are handled using the [`try / catch` construct][try-catch] provided by the JavaScript
+language.
+
+```js
+// Throws with a ReferenceError because z is undefined
+try {
+  const m = 1;
+  const n = m + z;
+} catch (err) {
+  // Handle the error here.
+}
+```
+
+Any use of the JavaScript `throw` mechanism will raise an exception that
+*must* be handled using `try / catch` or the Node.js process will exit
+immediately.
+
+With few exceptions, _Synchronous_ APIs (any blocking method that does not
+accept a `callback` function, such as [`fs.readFileSync`][]), will use `throw`
+to report errors.
+
+Errors that occur within _Asynchronous APIs_ may be reported in multiple ways:
+
+- Most asynchronous methods that accept a `callback` function will accept an
+  `Error` object passed as the first argument to that function. If that first
+  argument is not `null` and is an instance of `Error`, then an error occurred
+  that should be handled.
+
+  ```js
+  const fs = require('fs');
+  fs.readFile('a file that does not exist', (err, data) => {
+    if (err) {
+      console.error('There was an error reading the file!', err);
+      return;
+    }
+    // Otherwise handle the data
+  });
+  ```
+- When an asynchronous method is called on an object that is an `EventEmitter`,
+  errors can be routed to that object's `'error'` event.
+
+  ```js
+  const net = require('net');
+  const connection = net.connect('localhost');
+
+  // Adding an 'error' event handler to a stream:
+  connection.on('error', (err) => {
+    // If the connection is reset by the server, or if it can't
+    // connect at all, or on any sort of error encountered by
+    // the connection, the error will be sent here.
+    console.error(err);
+  });
+
+  connection.pipe(process.stdout);
+  ```
+
+- A handful of typically asynchronous methods in the Node.js API may still
+  use the `throw` mechanism to raise exceptions that must be handled using
+  `try / catch`. There is no comprehensive list of such methods; please
+  refer to the documentation of each method to determine the appropriate
+  error handling mechanism required.
+
+The use of the `'error'` event mechanism is most common for [stream-based][]
+and [event emitter-based][] APIs, which themselves represent a series of
+asynchronous operations over time (as opposed to a single operation that may
+pass or fail).
+
+For *all* `EventEmitter` objects, if an `'error'` event handler is not
+provided, the error will be thrown, causing the Node.js process to report an
+unhandled exception and  crash unless either: The [`domain`][domains] module is used
+appropriately or a handler has been registered for the
+[`process.on('uncaughtException')`][] event.
+
+```js
+const EventEmitter = require('events');
+const ee = new EventEmitter();
+
+setImmediate(() => {
+  // This will crash the process because no 'error' event
+  // handler has been added.
+  ee.emit('error', new Error('This will crash'));
+});
+```
+
+Errors generated in this way *cannot* be intercepted using `try / catch` as
+they are thrown *after* the calling code has already exited.
+
+Developers must refer to the documentation for each method to determine
+exactly how errors raised by those methods are propagated.
+
+### Node.js style callbacks
+
+<!--type=misc-->
+
+Most asynchronous methods exposed by the Node.js core API follow an idiomatic
+pattern  referred to as a "Node.js style callback". With this pattern, a
+callback function is passed to the method as an argument. When the operation
+either completes or an error is raised, the callback function is called with
+the Error object (if any) passed as the first argument. If no error was raised,
+the first argument will be passed as `null`.
+
+```js
+const fs = require('fs');
+
+function nodeStyleCallback(err, data) {
+ if (err) {
+   console.error('There was an error', err);
+   return;
+ }
+ console.log(data);
+}
+
+fs.readFile('/some/file/that/does-not-exist', nodeStyleCallback);
+fs.readFile('/some/file/that/does-exist', nodeStyleCallback)
+```
+
+The JavaScript `try / catch` mechanism **cannot** be used to intercept errors
+generated by asynchronous APIs.  A common mistake for beginners is to try to
+use `throw` inside a Node.js style callback:
+
+```js
+// THIS WILL NOT WORK:
+const fs = require('fs');
+
+try {
+  fs.readFile('/some/file/that/does-not-exist', (err, data) => {
+    // mistaken assumption: throwing here...
+    if (err) {
+      throw err;
+    }
+  });
+} catch(err) {
+  // This will not catch the throw!
+  console.log(err);
+}
+```
+
+This will not work because the callback function passed to `fs.readFile()` is
+called asynchronously. By the time the callback has been called, the
+surrounding code (including the `try { } catch(err) { }` block will have
+already exited. Throwing an error inside the callback **can crash the Node.js
+process** in most cases. If [domains][] are enabled, or a handler has been
+registered with `process.on('uncaughtException')`, such errors can be
+intercepted.
+
+## Class: Error
+
+<!--type=class-->
+
+A generic JavaScript `Error` object that does not denote any specific
+circumstance of why the error occurred. `Error` objects capture a "stack trace"
+detailing the point in the code at which the `Error` was instantiated, and may
+provide a text description of the error.
+
+All errors generated by Node.js, including all System and JavaScript errors,
+will either be instances of, or inherit from, the `Error` class.
+
+### new Error(message)
+
+Creates a new `Error` object and sets the `error.message` property to the
+provided text message. If an object is passed as `message`, the text message
+is generated by calling `message.toString()`. The `error.stack` property will
+represent the point in the code at which `new Error()` was called. Stack traces
+are dependent on [V8's stack trace API][]. Stack traces extend only to either
+(a) the beginning of  *synchronous code execution*, or (b) the number of frames
+given by the property `Error.stackTraceLimit`, whichever is smaller.
+
+### Error.captureStackTrace(targetObject[, constructorOpt])
+
+Creates a `.stack` property on `targetObject`, which when accessed returns
+a string representing the location in the code at which
+`Error.captureStackTrace()` was called.
+
+```js
+const myObject = {};
+Error.captureStackTrace(myObject);
+myObject.stack  // similar to `new Error().stack`
+```
+
+The first line of the trace, instead of being prefixed with `ErrorType:
+message`, will be the result of calling `targetObject.toString()`.
+
+The optional `constructorOpt` argument accepts a function. If given, all frames
+above `constructorOpt`, including `constructorOpt`, will be omitted from the
+generated stack trace.
+
+The `constructorOpt` argument is useful for hiding implementation
+details of error generation from an end user. For instance:
+
+```js
+function MyError() {
+  Error.captureStackTrace(this, MyError);
+}
+
+// Without passing MyError to captureStackTrace, the MyError
+// frame would show up in the .stack property. By passing
+// the constructor, we omit that frame and all frames above it.
+new MyError().stack
+```
+
+### Error.stackTraceLimit
+
+The `Error.stackTraceLimit` property specifies the number of stack frames
+collected by a stack trace (whether generated by `new Error().stack` or
+`Error.captureStackTrace(obj)`).
+
+The default value is `10` but may be set to any valid JavaScript number. Changes
+will affect any stack trace captured *after* the value has been changed.
+
+If set to a non-number value, or set to a negative number, stack traces will
+not capture any frames.
+
+#### error.message
+
+Returns the string description of error as set by calling `new Error(message)`.
+The `message` passed to the constructor will also appear in the first line of
+the stack trace of the `Error`, however changing this property after the
+`Error` object is created *may not* change the first line of the stack trace.
+
+```js
+const err = new Error('The message');
+console.log(err.message);
+  // Prints: The message
+```
+
+#### error.stack
+
+Returns a s

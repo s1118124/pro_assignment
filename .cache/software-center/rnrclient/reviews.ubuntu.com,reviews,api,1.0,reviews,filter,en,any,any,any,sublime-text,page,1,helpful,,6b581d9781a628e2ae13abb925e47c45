@@ -1,0 +1,14 @@
+status: 200
+content-length: 2
+expires: Fri, 02 Dec 2016 18:53:08 GMT
+content-location: https://reviews.ubuntu.com/reviews/api/1.0/reviews/filter/en/any/any/any/sublime-text/page/1/helpful/
+strict-transport-security: max-age=15768000; includeSubDomains; preload
+vary: Accept
+server: gunicorn/19.3.0
+last-modified: Fri, 02 Dec 2016 18:48:08 GMT
+x-bzr-revision-number: 321
+cache-control: max-age=300
+date: Fri, 02 Dec 2016 18:48:08 GMT
+content-type: application/json; charset=utf-8
+
+[]

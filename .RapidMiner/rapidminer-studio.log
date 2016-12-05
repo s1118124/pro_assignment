@@ -1,0 +1,66 @@
+Dec 22, 2015 7:47:43 AM com.rapidminer.tools.I18N <clinit>
+INFO: Set locale to en.
+Dec 22, 2015 7:47:44 AM com.rapidminer.core.license.ProductConstraintManager initialize
+INFO: Initializing license manager.
+Dec 22, 2015 7:47:44 AM com.rapidminer.core.license.ProductConstraintManager initialize
+INFO: Using default license location.
+Dec 22, 2015 7:47:44 AM com.rapidminer.core.license.ProductConstraintManager initialize
+INFO: Registering default product.
+Dec 22, 2015 7:47:45 AM com.rapidminer.tools.plugin.Plugin registerPlugins
+INFO: Register plugin: Remote Repository
+Dec 22, 2015 7:47:45 AM com.rapidminer.tools.plugin.Plugin registerPlugins
+INFO: Register plugin: Operator Recommender
+Dec 22, 2015 7:47:45 AM com.rapidminer.tools.plugin.Plugin registerPlugins
+INFO: Register plugin: Social Media
+Dec 22, 2015 7:47:45 AM com.rapidminer.tools.plugin.Plugin registerPlugins
+INFO: Register plugin: Process Scheduling
+Dec 22, 2015 7:47:45 AM com.rapidminer.tools.plugin.Plugin registerPlugins
+INFO: Register plugin: Data Editor
+Dec 22, 2015 7:47:45 AM com.rapidminer.tools.plugin.Plugin registerPlugins
+INFO: Register plugin: Cloud Execution
+Dec 22, 2015 7:47:45 AM com.rapidminer.tools.plugin.Plugin registerPlugins
+INFO: Register plugin: JDBC Connectors
+Dec 22, 2015 7:47:45 AM com.rapidminer.tools.plugin.Plugin registerPlugins
+INFO: Register plugin: Productivity
+Dec 22, 2015 7:47:45 AM com.rapidminer.tools.plugin.Plugin registerPlugins
+INFO: Register plugin: Advanced File Connectors
+Dec 22, 2015 7:47:45 AM com.rapidminer.tools.plugin.Plugin registerPlugins
+INFO: Register plugin: Cloud Connectivity
+Dec 22, 2015 7:47:46 AM com.rapidminer.tools.config.ConfigurationManager register
+INFO: Registered configurator Twitter Connection.
+Dec 22, 2015 7:47:47 AM com.rapidminer.extension.jdbc.tools.jdbc.JDBCProperties <init>
+WARNING: Missing database driver class name for ODBC Bridge (e.g. Access)
+Dec 22, 2015 7:47:47 AM com.rapidminer.extension.jdbc.tools.jdbc.JDBCProperties registerDrivers
+INFO: JDBC driver ca.ingres.jdbc.IngresDriver not found. Probably the driver is not installed.
+Dec 22, 2015 7:47:48 AM com.rapidminer.tools.config.ConfigurationManager register
+INFO: Registered configurator Salesforce Connection.
+Dec 22, 2015 7:47:48 AM com.rapidminer.tools.config.ConfigurationManager register
+INFO: Registered configurator Amazon S3 Connection.
+Dec 22, 2015 7:47:48 AM com.rapidminer.tools.config.ConfigurationManager register
+INFO: Registered configurator Dropbox Connection.
+Dec 22, 2015 7:47:55 AM com.rapidminer.tools.config.ConfigurationManager loadConfiguration
+INFO: Load configuration for Amazon S3 Connection.
+Dec 22, 2015 7:47:55 AM com.rapidminer.tools.config.ClientConfigurationManager loadAllParameters
+INFO: No configuration file found for Amazon S3 Connection
+Dec 22, 2015 7:47:55 AM com.rapidminer.tools.config.ConfigurationManager loadConfiguration
+INFO: Loaded configurations for 0 objects of type Amazon S3 Connection.
+Dec 22, 2015 7:47:55 AM com.rapidminer.tools.config.ConfigurationManager loadConfiguration
+INFO: Load configuration for Dropbox Connection.
+Dec 22, 2015 7:47:55 AM com.rapidminer.tools.config.ClientConfigurationManager loadAllParameters
+INFO: No configuration file found for Dropbox Connection
+Dec 22, 2015 7:47:55 AM com.rapidminer.tools.config.ConfigurationManager loadConfiguration
+INFO: Loaded configurations for 0 objects of type Dropbox Connection.
+Dec 22, 2015 7:47:55 AM com.rapidminer.tools.config.ConfigurationManager loadConfiguration
+INFO: Load configuration for Salesforce Connection.
+Dec 22, 2015 7:47:55 AM com.rapidminer.tools.config.ClientConfigurationManager loadAllParameters
+INFO: No configuration file found for Salesforce Connection
+Dec 22, 2015 7:47:55 AM com.rapidminer.tools.config.ConfigurationManager loadConfiguration
+INFO: Loaded configurations for 0 objects of type Salesforce Connection.
+Dec 22, 2015 7:47:55 AM com.rapidminer.tools.config.ConfigurationManager loadConfiguration
+INFO: Load configuration for Twitter Connection.
+Dec 22, 2015 7:47:55 AM com.rapidminer.tools.config.ClientConfigurationManager loadAllParameters
+INFO: No configuration file found for Twitter Connection
+Dec 22, 2015 7:47:55 AM com.rapidminer.tools.config.ConfigurationManager loadConfiguration
+INFO: Loaded configurations for 0 objects of type Twitter Connection.
+Dec 22, 2015 7:48:11 AM com.rapidminer.gui.RapidMinerGUI$ShutdownHook run
+INFO: Running shutdown sequence.

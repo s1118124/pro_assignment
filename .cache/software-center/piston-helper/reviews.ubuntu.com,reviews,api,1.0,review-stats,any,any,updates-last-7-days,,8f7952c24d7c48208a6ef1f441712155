@@ -1,0 +1,129 @@
+status: 200
+content-length: 2932
+expires: Fri, 02 Dec 2016 22:47:10 GMT
+content-location: https://reviews.ubuntu.com/reviews/api/1.0/review-stats/any/any/updates-last-7-days/
+strict-transport-security: max-age=15768000; includeSubDomains; preload
+vary: Accept,Accept-Encoding
+server: gunicorn/19.3.0
+last-modified: Fri, 02 Dec 2016 18:47:10 GMT
+-content-encoding: gzip
+x-bzr-revision-number: 321
+cache-control: max-age=14400
+date: Fri, 02 Dec 2016 18:48:01 GMT
+content-type: application/json; charset=utf-8
+-varied-accept-encoding: gzip, deflate
+
+[
+    {
+        "ratings_total": 35, 
+        "ratings_average": "3.17", 
+        "app_name": "", 
+        "package_name": "dreamchess", 
+        "histogram": "[8, 5, 6, 5, 11]"
+    }, 
+    {
+        "ratings_total": 3, 
+        "ratings_average": "4.00", 
+        "app_name": "", 
+        "package_name": "setbfree", 
+        "histogram": "[0, 0, 1, 1, 1]"
+    }, 
+    {
+        "ratings_total": 12, 
+        "ratings_average": "4.08", 
+        "app_name": "", 
+        "package_name": "dconf-editor", 
+        "histogram": "[1, 0, 2, 3, 6]"
+    }, 
+    {
+        "ratings_total": 89, 
+        "ratings_average": "3.21", 
+        "app_name": "", 
+        "package_name": "openbve", 
+        "histogram": "[25, 3, 12, 26, 23]"
+    }, 
+    {
+        "ratings_total": 50, 
+        "ratings_average": "3.34", 
+        "app_name": "", 
+        "package_name": "fatrat", 
+        "histogram": "[9, 8, 8, 7, 18]"
+    }, 
+    {
+        "ratings_total": 60, 
+        "ratings_average": "4.35", 
+        "app_name": "", 
+        "package_name": "icedtea-plugin", 
+        "histogram": "[2, 7, 3, 4, 44]"
+    }, 
+    {
+        "ratings_total": 6, 
+        "ratings_average": "4.67", 
+        "app_name": "", 
+        "package_name": "comicseer", 
+        "histogram": "[0, 0, 0, 2, 4]"
+    }, 
+    {
+        "ratings_total": 23, 
+        "ratings_average": "1.09", 
+        "app_name": "", 
+        "package_name": "gfax", 
+        "histogram": "[22, 0, 1, 0, 0]"
+    }, 
+    {
+        "ratings_total": 199, 
+        "ratings_average": "4.26", 
+        "app_name": "", 
+        "package_name": "amarok", 
+        "histogram": "[12, 13, 12, 36, 126]"
+    }, 
+    {
+        "ratings_total": 501, 
+        "ratings_average": "4.79", 
+        "app_name": "", 
+        "package_name": "stellarium", 
+        "histogram": "[9, 5, 5, 45, 437]"
+    }, 
+    {
+        "ratings_total": 33, 
+        "ratings_average": "4.27", 
+        "app_name": "", 
+        "package_name": "krita", 
+        "histogram": "[4, 0, 1, 6, 22]"
+    }, 
+    {
+        "ratings_total": 624, 
+        "ratings_average": "4.86", 
+        "app_name": "", 
+        "package_name": "gparted", 
+        "histogram": "[5, 4, 6, 46, 563]"
+    }, 
+    {
+        "ratings_total": 42, 
+        "ratings_average": "3.21", 
+        "app_name": "", 
+        "package_name": "gnome-calculator", 
+        "histogram": "[12, 5, 3, 6, 16]"
+    }, 
+    {
+        "ratings_total": 15, 
+        "ratings_average": "4.00", 
+        "app_name": "", 
+        "package_name": "vim-common", 
+        "histogram": "[2, 1, 0, 4, 8]"
+    }, 
+    {
+        "ratings_total": 1, 
+        "ratings_average": "5.00", 
+        "app_name": "", 
+        "package_name": "eom", 
+        "histogram": "[0, 0, 0, 0, 1]"
+    }, 
+    {
+        "ratings_total": 1, 
+        "ratings_average": "1.00", 
+        "app_name": "", 
+        "package_name": "wine-gecko2.21", 
+        "histogram": "[1, 0, 0, 0, 0]"
+    }
+]

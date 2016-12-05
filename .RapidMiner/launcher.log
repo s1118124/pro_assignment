@@ -1,0 +1,18 @@
+Dec 22, 2015 7:47:40 AM com.rapidminer.launcher.JVMOptionBuilder log
+INFO: Trying to read user setting for maximum amount of memory.
+Dec 22, 2015 7:47:40 AM com.rapidminer.launcher.JVMOptionBuilder log
+INFO: No user setting for maximum amount of memory found.
+Dec 22, 2015 7:47:41 AM com.rapidminer.launcher.JVMOptionBuilder log
+INFO: Using G1 garbace collection with 2 parallel and 1 concurrent GC threads.
+Dec 22, 2015 7:47:41 AM com.rapidminer.launcher.JVMOptionBuilder log
+INFO: Calculating JVM memory settings...
+Dec 22, 2015 7:47:41 AM com.rapidminer.launcher.JVMOptionBuilder log
+INFO: Total physical memory detected: 3939
+Dec 22, 2015 7:47:41 AM com.rapidminer.launcher.JVMOptionBuilder log
+INFO: Calculating maximum usable memory for RapidMiner... 
+Dec 22, 2015 7:47:41 AM com.rapidminer.launcher.JVMOptionBuilder log
+INFO: Set maximum usable memory to 3545mb
+Dec 22, 2015 7:47:41 AM com.rapidminer.launcher.JVMOptionBuilder log
+INFO: Using up to 3545mb of memory.
+Dec 22, 2015 7:47:41 AM com.rapidminer.launcher.JVMOptionBuilder log
+INFO: Launch settings are: ' -XX:ConcGCThreads=1 -XX:ParallelGCThreads=2 -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:InitiatingHeapOccupancyPercent=0 -Xms384m -Xmx3545m -XX:MaxPermSize=128m'

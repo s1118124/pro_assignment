@@ -1,0 +1,32 @@
+
+** (process:3602): WARNING **: *** Unsupported operation detected on trash directory
+
+** (process:3602): WARNING **:   dir: /home/developer/.local/share/Trash/files, file: project381.3, type: 1
+
+
+
+** (process:3602): WARNING **: *** Unsupported operation detected on trash directory
+
+** (process:3602): WARNING **:   dir: /home/developer/.local/share/Trash/files, file: untitled, type: 1
+
+
+
+(unity-scope-home:3791): Json-CRITICAL **: json_object_get_object_member: assertion 'node != NULL' failed
+
+(unity-scope-home:3791): Json-CRITICAL **: json_object_get_object_member: assertion 'node != NULL' failed
+
+(unity-scope-home:3791): Json-CRITICAL **: json_object_get_object_member: assertion 'node != NULL' failed
+
+(unity-scope-home:3791): Json-CRITICAL **: json_object_get_object_member: assertion 'node != NULL' failed
+
+(unity-scope-home:3791): Json-CRITICAL **: json_object_get_object_member: assertion 'node != NULL' failed
+
+(unity-scope-home:3791): Json-CRITICAL **: json_object_get_object_member: assertion 'node != NULL' failed
+
+(unity-scope-home:3791): Json-CRITICAL **: json_object_get_object_member: assertion 'node != NULL' failed
+
+(unity-scope-home:3791): Json-CRITICAL **: json_object_get_object_member: assertion 'node != NULL' failed
+
+(unity-scope-home:3791): Json-CRITICAL **: json_object_get_object_member: assertion 'node != NULL' failed
+
+(unity-scope-home:3791): Json-CRITICAL **: json_object_get_object_member: assertion 'node != NULL' failed

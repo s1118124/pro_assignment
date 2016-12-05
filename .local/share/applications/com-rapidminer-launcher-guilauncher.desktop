@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=<new process> – RapidMiner Studio Basic 6.5.002 @ ubuntu
+Icon=com-rapidminer-launcher-guilauncher.png
+Path=/home/developer/rapidminer-studio
+Exec=/usr/lib/jvm/oracle_jdk8/bin/java -XX:ConcGCThreads=1 -XX:ParallelGCThreads=2 -XX:+UseG1GC -XX:MaxGCPauseMillis=50 -XX:InitiatingHeapOccupancyPercent=0 -Xms384m -Xmx1789m -XX:MaxPermSize=128m -cp /home/developer/rapidminer-studio/lib/*:/home/developer/rapidminer-studio/lib/jdbc/* com.rapidminer.launcher.GUILauncher
+StartupNotify=false
+StartupWMClass=com-rapidminer-launcher-GUILauncher
+OnlyShowIn=Unity;
+X-UnityGenerated=true

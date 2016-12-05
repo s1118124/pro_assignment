@@ -1,0 +1,99 @@
+o Coordinates:-73.9557413, 40.7720266
+- Borough:Manhattan
+- Cuisine:Italian
+- Grades: o Date:2014-10-01,Grade:A,Score:11
+o Date:2014-01-16,Grade:B,Score: 17
+- Name:Vella
+show dbs
+test
+use test
+show collections
+mongo localhost/restaurants
+mongo test/restaurants
+mongo localhost/restaurants
+mongo localhost/test
+show dbs
+show collections
+use test
+use test
+show dbs
+use revision
+show dbs
+show collections
+test
+db.dropDatabase()
+show dbs
+show collections
+show collections
+show collections
+show collections
+show dbs
+use revision
+show dbs
+show collections
+db.dropDatabase()
+show collections
+show dbs
+db.dropDatabase()
+use test
+show dbs
+show collections
+use revision
+show collections
+db.createCollection("revisionCollection")
+show collections
+db.revisionCollection.drop()
+db.createCollection("revisionCollection")
+db.revisionCollection.insert({name: 'this is a string', aJsonObj: {aValueOfJSONObj: 123}})
+db.revisionCollection.find()
+db.revisionCollection.find().pretty
+db.revisionCollection.find().pretty()
+db.revisionCollection.drop()
+show collections
+db.restaurants.insert({Address:{Street: "2 Avenue", Zipcode: 10075}})
+db.restaurants.find()
+db.restaurants.find().pretty()
+db.restaurants.remove({Address:{Street: "2 Avenue", Zipcode: 10075}})
+db.restaurants.find({Borough: "Manhattan"})
+db.restaurants.find({borough: "Manhattan"})
+db.restaurants.find({borough: "Manhattan"}).pretty()
+db.restaurants.find({borough: "Manhattan", cusine: "Italian"}).pretty()
+db.restaurants.find({borough: "Manhattan", cuisine: "Italian"}).pretty()
+db.restaurants.find({borough: "Manhattan", cuisine: "Italian"}).pretty().limit(5)
+db.restaurants.find({borough: "Manhattan", cuisine: "Italian"}).pretty().limit(2)
+db.restaurants.find({borough: "Manhattan", cuisine: "Italian"}).pretty().limit(1)
+db.restaurants.find({borough: "Manhattan", cuisine: "Italian", "grades.grade": "A"}}).pretty().limit(2)
+db.restaurants.find({borough: "Manhattan", cuisine: "Italian", "grades.grade": "A"}}).pretty()
+db.restaurants.find({borough: "Manhattan", cuisine: "Italian", {"grades.grade": "A"}}}).pretty()
+db.restaurants.find({borough: "Manhattan", cuisine: "Italian", "grades.grade": "A"}).pretty()
+db.restaurants.find({borough: "Manhattan", cuisine: "Italian", "grades.grade": "A"}).pretty().limit(1)
+db.restaurants.find({$or: {{cuisine: "Italian", "grades.grade": "A"}, "grades.score":{$gt: 10}}}).pretty()
+db.restaurants.find({$or: [{cuisine: "Italian", "grades.grade": "A"}, "grades.score":{$gt: 10}]}).pretty()
+db.restaurants.find({$or: [{cuisine: "Italian", "grades.grade": "A"}, {"grades.score":{$gt: 10}}]}).pretty()
+db.restaurants.find({$or: [{cuisine: "Italian"},{cuisine: "American"}]},{$name : 1, $borough: 1}).pretty()
+db.restaurants.find({$or: [{cuisine: "Italian"},{cuisine: "American"}]},{name : 1, borough: 1}).pretty()
+db.restaurants.find({$or: [{cuisine: "Italian"},{cuisine: "American"}]},{_id : 0, name : 1, borough: 1}).pretty()
+test
+show collections
+show database
+show databases
+create cafes
+db.createCollection(cafes)
+db.createCollection("cafes")
+db.cafes.insert({name:'Pacific Coffee',coord:['22.316109','114.180459'],seats:30,id:'001'})
+db.cafes.insert({name:'Starbucks', coord:['22.3184043','114.1746328'],seats:50,id:'002'})
+db.cafes.find()
+db.cafes.find().pretty
+db.cafes.find().pretty()
+use items
+db.items.insert(items.json)
+db.items.insert(items)
+mongoimport--db <db-name> --collection <coll-name> --type json --file seed.json
+mongoimport --db test --collection items --type json --file items.json --jsonArray
+show collections
+show databases
+mongoimport --db test --collection items --type json --file items.json
+import --db test --collection items --type json --file items.json
+mongoimport --test --items --json --file items.json
+mongoimport -d test -c items items.js
+mongoimport -d test -c items items.json

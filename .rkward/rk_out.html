@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="System"?>
+<html><head>
+<title>RKWard Output</title>
+<link rel="StyleSheet" type="text/css" href="file:///usr/share/kde4/apps/rkward/pages/rkward_output.css"/>
+	<script type="text/javascript">
+		<!--
+			function addToTOC(id, level){
+				var fullHeader = document.getElementById(id);
+				var resultsTOC = document.getElementById('RKWardResultsTOCShown');
+				var headerName = fullHeader.getAttribute('name');
+				var headerText = fullHeader.firstChild.data;
+				var headerTitle = fullHeader.getAttribute('title');
+				var newDiv = document.createElement('div');
+				// create new anchor for TOC
+				var newAnchor = '<a href="#' + headerName + '" title="' + headerTitle + '"';
+				// indent anchor depending on header level
+				if(level > 1){
+					newDiv.style.textIndent = level-1 + 'em';
+					newDiv.className = 'level' + level;
+					newAnchor = '&bull; ' + newAnchor + '>' + headerText + '</a>';
+				} else {
+					newAnchor = newAnchor + '>' + headerText + '</a>';
+				}
+				newDiv.innerHTML = newAnchor;
+				resultsTOC.appendChild(newDiv);
+			}
+			function switchVisible(show, hide) {
+				document.getElementById(show).style.display = 'inline';
+				document.getElementById(hide).style.display = 'none';
+			}
+			function showMLevel(nodes){
+				for(var i=0; i < nodes.length; i++) {
+					nodes[i].style.display = 'block';
+				}
+			}
+			function hideMLevel(nodes){
+				for(var i=0; i < nodes.length; i++) {
+					nodes[i].style.display = 'none';
+				}
+			}
+			function maxLevel(level){
+				if(level > 5){
+					return false;
+				}
+				for(var i=1; i < 6; i++) {
+					if(i <= level){
+						showMLevel(document.getElementsByClassName('level' + i));
+					} else {
+						hideMLevel(document.getElementsByClassName('level' + i));
+					}
+				}
+			}
+		// -->
+	</script>
+</head>
+<body>
+<a name="top"></a>
+<pre>RKWard output initialized on Tue Nov 17 11:58:32 2015 </pre>
+<div id="RKWardResultsTOCShown" class="RKTOC">
+	<a onclick="javascript:switchVisible('RKWardResultsTOCHidden','RKWardResultsTOCShown'); return false;" href="" class="toggleTOC">Hide TOC</a>
+	<span class="right"><a href="#top" class="toggleTOC">Go to top</a></span>
+<br />		<span class="center">
+			<a onclick="javascript:maxLevel('1'); return false;" href="" title="TOC level 1">1</a> &bull;
+			<a onclick="javascript:maxLevel('2'); return false;" href="" title="TOC level 2">2</a> &bull;
+			<a onclick="javascript:maxLevel('3'); return false;" href="" title="TOC level 3">3</a> &bull;
+			<a onclick="javascript:maxLevel('4'); return false;" href="" title="TOC level 4">4</a>
+		</span>
+	<!-- the TOC menu goes here -->
+</div>
+<div id="RKWardResultsTOCHidden" class="RKTOC RKTOChidden">
+	<a onclick="javascript:switchVisible('RKWardResultsTOCShown','RKWardResultsTOCHidden'); return false;" href="" class="toggleTOC">Show TOC</a>
+	<span class="right"><a href="#top" class="toggleTOC">Go to top</a></span>
+</div>

@@ -1,0 +1,37 @@
+<HTML>
+<head>
+  <title><%= r.name %></title>
+  <!--add code[Googlemap]-->
+  <!--script for google map??-->
+  <!--end add code-->
+</head>
+<BODY>
+<H2><%= r.name %></H2>
+<% if (r.photo != null) { %>
+<p>
+  <img src="data:<%= r.mimetype %>;base64,<%= r.photo %>">
+<br>
+<% } %>
+<p>Name: <%= r.name %></p>
+<p>Cuisine: <%= r.address.cuisine %></p>
+<p>Street: <%= r.address.street %></p>
+<p>Building: <%= r.address.building %></p>
+<p>Zipcode: <%= r.address.zipcode %></p>
+<p>GPS: [ <%= r.address.coord.lon %>,  <%=r.address.coord.lat %> ]</p>
+<p>Rating: <ol><li> <%=r.rate %></li></ol></p>
+<p>Created by: </p>
+
+
+<!--Googlemap-->
+<p>Google map: coming soon(map will be shown in here)</p>
+<!--Googlemap-->
+
+<!--<a href/add2cart?id=<%= r._id %>>add to shopping cart</a>-->
+<a href=/rate>Rate</a>
+<a href=/change>Edit</a>
+<a href=/remove>Delete</a>
+<a href=/list>Go Back</a>
+
+
+</BODY>
+</HTML>

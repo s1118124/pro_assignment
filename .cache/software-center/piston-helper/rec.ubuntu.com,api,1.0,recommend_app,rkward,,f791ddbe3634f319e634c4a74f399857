@@ -1,0 +1,221 @@
+status: 200
+content-length: 4837
+via: 1.1 papeda.canonical.com:3128 (squid/2.7.STABLE7)
+content-location: https://rec.ubuntu.com/api/1.0/recommend_app/rkward/
+x-cache: MISS from papeda.canonical.com
+x-cache-lookup: HIT from papeda.canonical.com:3128
+expires: Tue, 17 Nov 2015 03:58:30 GMT
+server: Apache
+last-modified: Tue, 17 Nov 2015 03:53:30 GMT
+etag: "a8262df1efb3d6ec8393d75ed85e9ad9"
+strict-transport-security: max-age=2592000
+cache-control: max-age=300
+date: Tue, 17 Nov 2015 03:53:30 GMT
+content-type: application/json; charset=utf-8
+
+{
+    "rid": "0511477130eba7a196e656bb5bcdccd6", 
+    "data": [
+        {
+            "package_name": "r-cran-rcmdr", 
+            "similarity": 0.2711
+        }, 
+        {
+            "package_name": "r-base-core", 
+            "similarity": 0.2056
+        }, 
+        {
+            "package_name": "pspp", 
+            "similarity": 0.1385
+        }, 
+        {
+            "package_name": "wxmaxima", 
+            "similarity": 0.1086
+        }, 
+        {
+            "package_name": "freemat", 
+            "similarity": 0.0914
+        }, 
+        {
+            "package_name": "scilab", 
+            "similarity": 0.0881
+        }, 
+        {
+            "package_name": "qtiplot", 
+            "similarity": 0.085
+        }, 
+        {
+            "package_name": "qtoctave", 
+            "similarity": 0.0839
+        }, 
+        {
+            "package_name": "grace", 
+            "similarity": 0.0808
+        }, 
+        {
+            "package_name": "bibus", 
+            "similarity": 0.0795
+        }, 
+        {
+            "package_name": "jabref", 
+            "similarity": 0.0772
+        }, 
+        {
+            "package_name": "octave3.2", 
+            "similarity": 0.0711
+        }, 
+        {
+            "package_name": "spyder", 
+            "similarity": 0.0689
+        }, 
+        {
+            "package_name": "gretl", 
+            "similarity": 0.064
+        }, 
+        {
+            "package_name": "rlplot", 
+            "similarity": 0.0626
+        }, 
+        {
+            "package_name": "lyx", 
+            "similarity": 0.0608
+        }, 
+        {
+            "package_name": "euler", 
+            "similarity": 0.0601
+        }, 
+        {
+            "package_name": "imagej", 
+            "similarity": 0.0593
+        }, 
+        {
+            "package_name": "gcu-bin", 
+            "similarity": 0.0592
+        }, 
+        {
+            "package_name": "qgis", 
+            "similarity": 0.0586
+        }, 
+        {
+            "package_name": "kile", 
+            "similarity": 0.058
+        }, 
+        {
+            "package_name": "kbibtex", 
+            "similarity": 0.0558
+        }, 
+        {
+            "package_name": "plotdrop", 
+            "similarity": 0.0543
+        }, 
+        {
+            "package_name": "fraqtive", 
+            "similarity": 0.0516
+        }, 
+        {
+            "package_name": "rasmol", 
+            "similarity": 0.0509
+        }, 
+        {
+            "package_name": "texmaker", 
+            "similarity": 0.0503
+        }, 
+        {
+            "package_name": "weka", 
+            "similarity": 0.0499
+        }, 
+        {
+            "package_name": "carmetal", 
+            "similarity": 0.0494
+        }, 
+        {
+            "package_name": "k3dsurf", 
+            "similarity": 0.0489
+        }, 
+        {
+            "package_name": "qelectrotech", 
+            "similarity": 0.0478
+        }, 
+        {
+            "package_name": "kalgebra", 
+            "similarity": 0.0475
+        }, 
+        {
+            "package_name": "geda-gschem", 
+            "similarity": 0.0468
+        }, 
+        {
+            "package_name": "gcrystal", 
+            "similarity": 0.0458
+        }, 
+        {
+            "package_name": "kseg", 
+            "similarity": 0.0455
+        }, 
+        {
+            "package_name": "ghemical", 
+            "similarity": 0.044
+        }, 
+        {
+            "package_name": "merkaartor", 
+            "similarity": 0.0426
+        }, 
+        {
+            "package_name": "electric", 
+            "similarity": 0.0422
+        }, 
+        {
+            "package_name": "gummi", 
+            "similarity": 0.0411
+        }, 
+        {
+            "package_name": "gcx", 
+            "similarity": 0.0407
+        }, 
+        {
+            "package_name": "oregano", 
+            "similarity": 0.0405
+        }, 
+        {
+            "package_name": "latexila", 
+            "similarity": 0.0396
+        }, 
+        {
+            "package_name": "josm", 
+            "similarity": 0.0392
+        }, 
+        {
+            "package_name": "reinteract", 
+            "similarity": 0.0391
+        }, 
+        {
+            "package_name": "xpdf", 
+            "similarity": 0.0384
+        }, 
+        {
+            "package_name": "calligrastage", 
+            "similarity": 0.0379
+        }, 
+        {
+            "package_name": "geogebra", 
+            "similarity": 0.0378
+        }, 
+        {
+            "package_name": "qalculate-gtk", 
+            "similarity": 0.0376
+        }, 
+        {
+            "package_name": "latexdraw", 
+            "similarity": 0.0372
+        }, 
+        {
+            "package_name": "kiki", 
+            "similarity": 0.0367
+        }, 
+        {
+            "package_name": "kig", 
+            "similarity": 0.0363
+        }
+    ], 
+    "app": "rkward"
+}

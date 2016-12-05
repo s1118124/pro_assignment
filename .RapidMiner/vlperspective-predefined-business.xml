@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<VLDocking version="2.1">
+<DockingDesktop name="default">
+<DockingPanel>
+<Dockable>
+<Key dockName="templates"/>
+</Dockable>
+</DockingPanel>
+<Border zone="1">
+<Dockable>
+<Key dockName="repository_browser"/>
+<RelativePosition x="0.0" y="0.0" w="0.20000000298023224" h="1.0" />
+</Dockable>
+</Border>
+<TabGroups>
+</TabGroups>
+</DockingDesktop>
+</VLDocking>

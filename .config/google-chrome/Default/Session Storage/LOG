@@ -1,0 +1,30 @@
+2016/11/14-09:08:43.536 4582 Reusing MANIFEST /home/developer/.config/google-chrome/Default/Session Storage/MANIFEST-000001
+2016/11/14-09:08:43.536 4582 Recovering log #3
+2016/11/14-09:08:43.537 4582 Reusing old log /home/developer/.config/google-chrome/Default/Session Storage/000003.log 
+2016/11/14-10:13:37.652 6192 Level-0 table #5: started
+2016/11/14-10:13:37.670 6192 Level-0 table #5: 47082 bytes OK
+2016/11/14-10:13:37.672 6192 Delete type=0 #3
+2016/11/14-10:15:32.645 6192 Level-0 table #7: started
+2016/11/14-10:15:32.658 6192 Level-0 table #7: 88416 bytes OK
+2016/11/14-10:15:32.662 6192 Delete type=0 #4
+2016/11/14-10:18:56.584 6192 Level-0 table #9: started
+2016/11/14-10:18:56.589 6192 Level-0 table #9: 70716 bytes OK
+2016/11/14-10:18:56.591 6192 Delete type=0 #6
+2016/11/14-10:35:11.396 6192 Level-0 table #11: started
+2016/11/14-10:35:11.402 6192 Level-0 table #11: 96072 bytes OK
+2016/11/14-10:35:11.403 6192 Delete type=0 #8
+2016/11/14-10:35:18.670 6192 Level-0 table #13: started
+2016/11/14-10:35:18.680 6192 Level-0 table #13: 31561 bytes OK
+2016/11/14-10:35:18.684 6192 Delete type=0 #10
+2016/11/14-10:46:13.319 6192 Level-0 table #15: started
+2016/11/14-10:46:13.323 6192 Level-0 table #15: 32056 bytes OK
+2016/11/14-10:46:13.324 6192 Delete type=0 #12
+2016/11/14-10:46:13.324 6192 Compacting 4@0 + 1@1 files
+2016/11/14-10:46:13.332 6192 Generated table #16@0: 188 keys, 316156 bytes
+2016/11/14-10:46:13.332 6192 Compacted 4@0 + 1@1 files => 316156 bytes
+2016/11/14-10:46:13.333 6192 compacted to: files[ 0 1 1 0 0 0 0 ]
+2016/11/14-10:46:13.333 6192 Delete type=2 #9
+2016/11/14-10:46:13.333 6192 Delete type=2 #7
+2016/11/14-10:46:13.333 6192 Delete type=2 #11
+2016/11/14-10:46:13.333 6192 Delete type=2 #13
+2016/11/14-10:46:13.333 6192 Delete type=2 #15

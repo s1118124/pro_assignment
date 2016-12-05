@@ -1,0 +1,410 @@
+{
+	"folder_history":
+	[
+	],
+	"last_version": 3126,
+	"last_window_id": 4,
+	"log_indexing": false,
+	"settings":
+	{
+		"new_window_height": 883.0,
+		"new_window_settings":
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+				]
+			},
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
+			"command_palette":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"console":
+			{
+				"height": 0.0,
+				"history":
+				[
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"file_history":
+			[
+			],
+			"find":
+			{
+				"height": 0.0
+			},
+			"find_in_files":
+			{
+				"height": 0.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": false,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"show_context": true,
+				"use_buffer2": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"incremental_find":
+			{
+				"height": 0.0
+			},
+			"input":
+			{
+				"height": 0.0
+			},
+			"menu_visible": true,
+			"output.find_results":
+			{
+				"height": 0.0
+			},
+			"pinned_build_system": "",
+			"replace":
+			{
+				"height": 0.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 150.0,
+			"status_bar_visible": true,
+			"template_settings":
+			{
+			}
+		},
+		"new_window_width": 612.0
+	},
+	"windows":
+	[
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+					[
+						"_",
+						"_id"
+					],
+					[
+						"res",
+						"result"
+					]
+				]
+			},
+			"buffers":
+			[
+				{
+					"contents": "<HTML>\n<BODY>\n<head>\n  <title>New Restaurant</H1></title>\n</head>\n<form action='/create' method='post' encType='multipart/form-data'>\n  Name: <input type='text' name='name' required><br>\n  Cuisine: <input type='text' name='cuisine'><br>\n  Street: <input type='text' name='street'><br>\n  Building: <input type'text' name='building'><br>\n  Zipcode: <input type'number' name='zipcode'><br>\n  GPS Coordinates (lon.): <input type'number' name='lon'><br>\n  GPS Coordinates (lat.) <input type'number' name='lat'><br>\n  Photo: <input type='file' name='sampleFile'><br>\n  <input type='submit' value='Create' />\n</form>\n</BODY>\n</HTML>\n",
+					"file": "/home/developer/COMPS381F-test/restaurants/untitled.html",
+					"file_size": 626,
+					"file_write_time": 131251805292245323,
+					"settings":
+					{
+						"buffer_size": 626,
+						"line_ending": "Unix"
+					}
+				},
+				{
+					"contents": "//var http = require('http');\n//var url  = require('url');\nvar MongoClient = require('mongodb').MongoClient;\nvar assert = require('assert');\nvar ObjectId = require('mongodb').ObjectID;\nvar mongourl = 'mongodb://developer:developer@ds033046.mlab.com:33046/s1118124';\nvar express = require('express');\nvar app = express();\nvar bodyParser = require('body-parser');\nvar session = require('express-session');\nvar fileUpload = require('express-fileupload');\n\n//--googlemap\n/**var assert = require('assert');\nvar mongourl = 'mongodb://student:password@ds031873.mlab.com:31873/comps381f';\nvar MongoClient = require('mongodb').MongoClient;\n**/\n//--googlemap\n\nvar SECRETKEY = 'I want to pass COMPS381F';\n\napp.use(fileUpload());\napp.use(bodyParser.json());\napp.use(session({\n\tsecret: SECRETKEY,\n\tresave: true,\n\tsaveUninitialized: true\n}));\n/**\nvar restaurants = [\n\t{name: 'Apple iPad Pro', photo: 100, id: '001'},\n\t{name: 'Apple iPhone 7', photo: 50, id: '002'},\n\t{name: 'Apple Macbook', photo: 1627, id: '003'}\n];\n**/\n\napp.set('view engine', 'ejs');\n\n//var restaurants = [];\n\n//may need to fit the request as: GET /api/read\napp.get(\"/read\", function(req, res) {\n\t//var restaurants = [];\n\tMongoClient.connect(mongourl, function(err, db) {\n\tassert.equal(err,null);\n\tconsole.log('Connected to MongoDB\\n');\n\tdb.collection('restaurants').find().toArray(function(err, result){\n\t\t\tif (err) throw err\n\t\t\t\tconsole.log(result);\n\t\t\t\tres.render(\"list\", {restaurants: result});\n\t\t})\n\t\n\tdb.close();\n\tconsole.log('Disconnected MongoDB\\n');\n\t});\n\t\n\n});\n\t//res.render(\"list\", {restaurants: result});\n\napp.get('/details', function(req,res) {\n\t/**\n\tif (req.query.id != null) {\n\t\tfor (var i=0; i<restaurants.length; i++) {\n\t\t\tif (restaurants[i].id == req.query.id) {\n\t\t\t\tvar restaurant = restaurants[i];\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t\tif (restaurants != null) {\n\t\t\tres.render('details', {c: restaurant});\n\t\t} else {\n\t\t\tres.status(500).end(req.query.id + ' not found!');\n\t\t}\n\t} else {\n\t\tres.status(500).end('id missing!');\n\t}**/\n\tMongoClient.connect(mongourl, function(err, db) {\n\t\tassert.equal(err,null);\n\t\tconsole.log('Connected to MongoDB\\n');\n\t\tdb.collection('restaurants').find().toArray(function(err, result){;\n\t\t//db.close();\n\t\t//console.log('Disconnected MongoDB\\n');\n\t\tif (req.query.id != null) {\n\t\t\tfor (var i=0; i<result.length; i++) {\n\t\t\t\tif (result[i]._id == req.query.id) {\n\t\t\t\t\tvar r = result[i];\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif (result != null) {\n\t\t\t\tres.render('details', {restaurants: r});\n\t\t\t} else {\n\t\t\t\tres.status(500).end(req.query.id + ' not found!');\n\t\t\t}\n\t\t} else {\n\t\t\tres.status(500).end('id missing!');\n\t\t}\n\t\t})\n\t\tdb.close();\n\t\tconsole.log('Disconnected MongoDB\\n');\n\n\t});\n\n\n        //--Googlemap\n        /**MongoClient.connect(mongourl, function(err, db) {\n    assert.equal(err,null);\n    console.log('Connected to MongoDB\\n');\n\t\tvar criteria = {'id':req.query.id};\n    findCafe(db,criteria,function(cafe) {\n      db.close();\n      console.log('Disconnected MongoDB\\n');\n\t\t\tres.render('gmap',{name:cafe.name,lat:cafe.coord[0],lon:cafe.coord[1],zoom:18});\n\t\t\tres.end();\n\t\t});\n\t});**/\n        //--Googlemap\n});\n\n//--googlemap function\n/**\nfunction findCafe(db,criteria,callback) {\n\tdb.collection('cafes').findOne(criteria,function(err,result) {\n\t\tassert.equal(err,null);\n\t\tcallback(result);\n\t});\n}**/\n//--googlemap function\n\n/**\napp.get('/shoppingcart', function(req,res) {\n\t//res.end('coming soon!')\n        res.render(\"shoppingcart\", {c: restaurants});\n});\n**/\n\n//add code for new\napp.get('/new', function(req, res){\n\t//MongoClient.connect(mongourl, function(err, db) {\n\t//\tassert.equal(err,null);\n\t//\tconsole.log('Connected to MongoDB\\n');\n\t//\t//restaurants = db.collection('restaurants').find();\n\t//\tdb.close();\n\t//\tconsole.log('Disconnected MongoDB\\n');\n\t//});\n\tres.sendFile(__dirname + '/public/new.html');\n    //res.render(\"new\", {c: restaurants});//\n});\n\n//add code for create new\n//may need to fit the request as: POST /api/create\napp.post('/create', function(req, res){\n        //do sth to create\n\tvar r = {};  // new restaurant to be inserted\n\tr['address'] = {};\n\tr.address.street = (req.body.street != null) ? req.body.street : null;\n\tr.address.zipcode = (req.body.zipcode != null) ? req.body.zipcode : null;\n\tr.address.building = (req.body.building != null) ? req.body.building : null;\n\tr.address['coord'] = [];\n\tr.address.coord.push(req.body.lon);\n\tr.address.coord.push(req.body.lat);\n\tr['borough'] = (req.body.borough != null) ? req.body.borough : null;\n\tr['cuisine'] = (req.body.cuisine != null) ? req.body.cuisine : null;\n\tr['name'] = (req.body.name != null) ? req.body.name : null;\n\t//r['restaurant_id'] = (req.body.restaurant_id != null) ? req.body.restaurant_id : null;\n\t//\n\tMongoClient.connect(mongourl, function(err, db) {\n\t\tassert.equal(err,null);\n\t\tconsole.log('Connected to MongoDB\\n');\n\t\tdb.collection('restaurants').insertOne(r,\n\t\t\tfunction(err,result) {\n\t\t\t\tassert.equal(err,null);\n\t\t\t\tconsole.log(\"insertOne() was successful _id = \" +\n\t\t\t\t\tJSON.stringify(result.insertedId));\n\t\t\t\tdb.close();\n\t\t\t\tconsole.log('Disconnected from MongoDB\\n');\n\t\t\t\tres.writeHead(200, {\"Content-Type\": \"text/plain\"});\n\t\t\t\tres.end('Insert was successful ' + JSON.stringify(r));\n\t\t\t});\n\t});\n        //res.end('coming soon!')\n\t//res.redirect('/showdetails')\n});\n\napp.get('/change', function(req, res){\n\tres.sendFile(__dirname + '/public/change.html');\n    //res.render(\"new\", {c: restaurants});//\n});\n\napp.post('/change', function(req, res){\n        //do sth to create\n\tvar r = {};  // new restaurant to be inserted\n\tr._id = \n\tr['address'] = {};\n\tr.address.street = (req.body.street != null) ? req.body.street : null;\n\tr.address.zipcode = (req.body.zipcode != null) ? req.body.zipcode : null;\n\tr.address.building = (req.body.building != null) ? req.body.building : null;\n\tr.address['coord'] = [];\n\tr.address.coord.push(req.body.lon);\n\tr.address.coord.push(req.body.lat);\n\tr['borough'] = (req.body.borough != null) ? req.body.borough : null;\n\tr['cuisine'] = (req.body.cuisine != null) ? req.body.cuisine : null;\n\tr['name'] = (req.body.name != null) ? req.body.name : null;\n\t//r['restaurant_id'] = (req.body.restaurant_id != null) ? req.body.restaurant_id : null;\n\t//\n\n\tif (req.query._id != null) {\n\t\t\tfor (var i=0; i<result.length; i++) {\n\t\t\t\tif (result[i]._id == req.query.id) {\n\t\t\t\t\tvar r = result[i];\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif (result != null) {\n\t\t\t\tres.render('details', {restaurants: r});\n\t\t\t} else {\n\t\t\t\tres.status(500).end(req.query.id + ' not found!');\n\t\t\t}\n\t\t} else {\n\t\t\tres.status(500).end('id missing!');\n\t\t}\n\t\t})\n\tdb.close();\n\tconsole.log('Disconnected MongoDB\\n');\n\n\tMongoClient.connect(mongourl, function(err, db) {\n\t\tconsole.log('Connected to MongoDB\\n');\n\t\tdb.collection('restaurants').update(\n\t\t\t{_id : r._id},\n\t\t\t//{$set : {name : req.body.name, cuisine : req.body.name, borough : req.body.borough, address : req.body.borough}}\n\t\t\tr,\n\t\t\tfunction(err,result) {\n\t\t\t\tassert.equal(err,null);\n\t\t\t\tconsole.log(\"update name: \" + JSON.stringify(r.name))\n\t\t\t\tconsole.log(\"update name: \" + JSON.stringify(r.address))\n\t\t\t\tdb.close();\n\t\t\t\tconsole.log('Disconnected from MongoDB\\n');\n\t\t\t\tres.writeHead(200, {\"Content-Type\": \"text/plain\"});\n\t\t\t\tres.end('update was successful ');\n\t\t\t});\n\t\t//console.log('updated\\n');\n\t\t//db.close();\n\t\t//console.log('Disconnected from MongoDB\\n');\n\t\tconsole.log(\"update() was successful _id = \");\n        //res.end('coming soon!')\n\t//res.redirect('/showdetails')\n});\n});\n\n//useless code in this\napp.get('/add2cart', function(req,res) {\n\t//res.end('coming soon!')\n/**\t\n\tvar product;\n\tif (req.query.id != null) {\n\t\tfor (var i=0; i<products.length; i++) {\n\t\t\tif (products[i].id == req.query.id) {\n\t\t\t\tproduct = products[i];\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t\tif (product != null) {\n\n\t\t\tres.render('details', {c: product});\n\t\t} else {\n\t\t\tres.status(500).end(req.query.id + ' not found!');\n\t\t}\n\t} else {\n\t\tres.status(500).end('id missing!');\n\t}**/\n});\n\n//useless code in this\n/**\napp.get('/emptycart',function(req,res) {\n\tres.end('coming soon!')\n})\n**/\n\napp.listen(process.env.PORT || 8099);",
+					"file": "/home/developer/LOKTING/COMPS381F-test/restaurants/server.js",
+					"file_size": 8003,
+					"file_write_time": 131253227570425903,
+					"settings":
+					{
+						"buffer_size": 7999,
+						"encoding": "UTF-8",
+						"line_ending": "Unix"
+					}
+				}
+			],
+			"build_system": "",
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
+			"command_palette":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"console":
+			{
+				"height": 0.0,
+				"history":
+				[
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"file_history":
+			[
+				"/home/developer/LOKTING/COMPS381F-test/restaurants/views/change.ejs",
+				"/home/developer/LOKTING/COMPS381F-test/restaurants/server.js",
+				"/home/developer/COMPS381F/login/public/login.html",
+				"/home/developer/COMPS381F/login/server.js",
+				"/home/developer/COMPS381F-test/restaurants/server.js"
+			],
+			"find":
+			{
+				"height": 35.0
+			},
+			"find_in_files":
+			{
+				"height": 0.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": false,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"show_context": true,
+				"use_buffer2": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"groups":
+			[
+				{
+					"selected": 1,
+					"sheets":
+					[
+						{
+							"buffer": 0,
+							"file": "/home/developer/COMPS381F-test/restaurants/untitled.html",
+							"semi_transient": false,
+							"settings":
+							{
+								"buffer_size": 626,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										626,
+										626
+									]
+								],
+								"settings":
+								{
+									"syntax": "Packages/HTML/HTML.sublime-syntax",
+									"tab_size": 2,
+									"translate_tabs_to_spaces": true
+								},
+								"translation.x": 0.0,
+								"translation.y": 0.0,
+								"zoom_level": 1.0
+							},
+							"stack_index": 1,
+							"type": "text"
+						},
+						{
+							"buffer": 1,
+							"file": "/home/developer/LOKTING/COMPS381F-test/restaurants/server.js",
+							"semi_transient": false,
+							"settings":
+							{
+								"buffer_size": 7999,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										2590,
+										2590
+									]
+								],
+								"settings":
+								{
+									"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+								},
+								"translation.x": 0.0,
+								"translation.y": 2160.0,
+								"zoom_level": 1.0
+							},
+							"stack_index": 0,
+							"type": "text"
+						}
+					]
+				}
+			],
+			"incremental_find":
+			{
+				"height": 27.0
+			},
+			"input":
+			{
+				"height": 0.0
+			},
+			"layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			},
+			"menu_visible": true,
+			"output.find_results":
+			{
+				"height": 0.0
+			},
+			"pinned_build_system": "",
+			"position": "0,0,0,0,0,470,24,1735,885,1898,913",
+			"project": "",
+			"replace":
+			{
+				"height": 50.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"selected_group": 0,
+			"settings":
+			{
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 150.0,
+			"status_bar_visible": true,
+			"template_settings":
+			{
+			},
+			"window_id": 2,
+			"workspace_name": ""
+		}
+	],
+	"workspaces":
+	{
+		"recent_workspaces":
+		[
+		]
+	}
+}

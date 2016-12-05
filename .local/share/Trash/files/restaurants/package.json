@@ -1,0 +1,18 @@
+{
+    "name": "server",
+    "description": "NodeJS EXPRESS EJS app",
+    "author": "Wong Sze Man <s1118124@ouhk.edu.hk>",
+    "version": "0.0.1",
+    "dependencies": {
+	"mongodb": "*",
+        "assert": "*",
+        "mongoose": "*",
+        "express": "*",
+        "ejs": "*",
+        "express-session": "*",
+        "body-parser": "*",
+        "express-fileupload": "*"
+    },
+    "engine": "node >= 0.10.0",
+    "scripts": {"start": "node server"}
+}

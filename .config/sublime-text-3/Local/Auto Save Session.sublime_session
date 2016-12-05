@@ -1,0 +1,559 @@
+{
+	"folder_history":
+	[
+	],
+	"last_version": 3126,
+	"last_window_id": 4,
+	"log_indexing": false,
+	"settings":
+	{
+		"new_window_height": 883.0,
+		"new_window_settings":
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+				]
+			},
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
+			"command_palette":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"console":
+			{
+				"height": 0.0,
+				"history":
+				[
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"file_history":
+			[
+			],
+			"find":
+			{
+				"height": 0.0
+			},
+			"find_in_files":
+			{
+				"height": 0.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": false,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"show_context": true,
+				"use_buffer2": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"incremental_find":
+			{
+				"height": 0.0
+			},
+			"input":
+			{
+				"height": 0.0
+			},
+			"menu_visible": true,
+			"output.find_results":
+			{
+				"height": 0.0
+			},
+			"pinned_build_system": "",
+			"replace":
+			{
+				"height": 0.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 150.0,
+			"status_bar_visible": true,
+			"template_settings":
+			{
+			}
+		},
+		"new_window_width": 612.0
+	},
+	"windows":
+	[
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+					[
+						"r",
+						"restaurants"
+					],
+					[
+						"d",
+						"details"
+					],
+					[
+						"re",
+						"render"
+					],
+					[
+						"i",
+						"id"
+					],
+					[
+						"login",
+						"login_id"
+					],
+					[
+						"log",
+						"login_id"
+					],
+					[
+						"lo",
+						"login_id"
+					],
+					[
+						"user",
+						"username"
+					],
+					[
+						"_",
+						"_id"
+					],
+					[
+						"res",
+						"result"
+					]
+				]
+			},
+			"buffers":
+			[
+				{
+					"contents": "",
+					"file": "/home/developer/project381/package.json",
+					"file_size": 532,
+					"file_write_time": 131253632239710241,
+					"settings":
+					{
+						"buffer_size": 0,
+						"encoding": "UTF-8",
+						"line_ending": "Unix"
+					}
+				},
+				{
+					"contents": "var express = require('express');\nvar cookieSession = require('cookie-session');\nvar bodyParser = require('body-parser');\nvar app = express();\n//mongo\nvar MongoClient = require('mongodb').MongoClient;\nvar assert = require('assert');\nvar ObjectId = require('mongodb').ObjectID;\nvar mongourl = 'mongodb://developer:developer@ds033046.mlab.com:33046/s1118124';\n//var express = require('express');\n//var app = express();\n//var bodyParser = require('body-parser');\nvar session = require('express-session');\nvar fileUpload = require('express-fileupload');\nvar url  = require('url');\n\n\napp = express();\n\nvar SECRETKEY1 = 'I want to pass COMPS381F';\nvar SECRETKEY2 = 'Keep this to yourself';\nvar SECRETKEY3 = 'I want to pass COMPS381F';\n\nvar users = new Array(\n\t{userid: 'developer', password: 'developer'},\n\t{userid: 'guest', password: 'guest'}\n);\n\napp.set('view engine','ejs');\n\napp.use(cookieSession({\n  userid: 'session', //cookie id\n  keys: [SECRETKEY1,SECRETKEY2]\n}));\napp.use(bodyParser.urlencoded({ extended: false }));\napp.use(bodyParser.json());\napp.use(express.static(__dirname + '/public'));\n\napp.get('/',function(req,res) {\n\tconsole.log(req.session);\n\tif (!req.session.authenticated) { //if not login, no autheticated attribute\n\t\tres.redirect('/login');\n\t}\n\t//res.status(200).end('Hello, ' + req.session.userid + '!  This is a secret page!');\n\tres.redirect('/read');\n});\n\napp.get('/login',function(req,res) {\n\tres.sendFile(__dirname + '/public/login.html');\n});\n\nvar login_id = null;\napp.post('/login',function(req,res) {\n\tfor (var i=0; i<users.length; i++) {\n\t\tif (users[i].userid == req.body.userid &&\n\t\t    users[i].password == req.body.password) {\n\t\t\treq.session.authenticated = true;\n\t\t\treq.session.userid = users[i].userid;\n\t\t\tlogin_id = req.session.userid;\n\t\t}\n\t}\n\tres.redirect('/');\n});\n\napp.get('/logout',function(req,res) {\n\treq.session = null;  //make session has no info\n\tlogin_id = null;\n\tres.redirect('/');\n});\n\n//restaurants\napp.use(fileUpload());\napp.use(bodyParser.json());\napp.use(session({\n\tsecret: SECRETKEY3,\n\tresave: true,\n\tsaveUninitialized: true\n}));\n\n//may need to fit the request as: GET /api/read\napp.get(\"/read\", function(req, res) {\n\t//var restaurants = [];\n\tMongoClient.connect(mongourl, function(err, db) {\n\tassert.equal(err,null);\n\tconsole.log('Connected to MongoDB\\n');\n\tdb.collection('restaurants').find().toArray(function(err, result){\n\t\t\tif (err) throw err\n\t\t\t\tconsole.log(result);\n\t\t\t\tres.render(\"list\", {restaurants: result});\n\t\t})\t\n\tdb.close();\n\tconsole.log('Disconnected MongoDB\\n');\n\t});\n});\n\napp.get('/details', function(req,res) {\n\tMongoClient.connect(mongourl, function(err, db) {\n\t\tassert.equal(err,null);\n\t\tconsole.log('Connected to MongoDB\\n');\n\t\tdb.collection('restaurants').find().toArray(function(err, result){\n\t\t\tif (req.query.id != null) {\n\t\t\t\tfor (var i=0; i<result.length; i++) {\n\t\t\t\t\tif (result[i]._id == req.query.id) {\n\t\t\t\t\t\tvar r = result[i];\n\t\t\t\t\t\tbreak;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tif (result != null) {\n\t\t\t\t\tres.render('details', {restaurants: r, username: login_id});\n\t\t\t\t} else {\n\t\t\t\t\tres.status(500).end(req.query.id + ' not found!');\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tres.status(500).end('id missing!');\n\t\t\t}\n\t\t});\n\t\tdb.close();\n\t\tconsole.log('Disconnected MongoDB\\n');\n\n\t});\n\n\n        //--Googlemap\n        /**MongoClient.connect(mongourl, function(err, db) {\n    assert.equal(err,null);\n    console.log('Connected to MongoDB\\n');\n\t\tvar criteria = {'id':req.query.id};\n    findCafe(db,criteria,function(cafe) {\n      db.close();\n      console.log('Disconnected MongoDB\\n');\n\t\t\tres.render('gmap',{name:cafe.name,lat:cafe.coord[0],lon:cafe.coord[1],zoom:18});\n\t\t\tres.end();\n\t\t});\n\t});**/\n        //--Googlemap\n});\n\n//--googlemap function\n/**\nfunction findCafe(db,criteria,callback) {\n\tdb.collection('cafes').findOne(criteria,function(err,result) {\n\t\tassert.equal(err,null);\n\t\tcallback(result);\n\t});\n}**/\n//--googlemap function\n\n/**\napp.get('/shoppingcart', function(req,res) {\n\t//res.end('coming soon!')\n        res.render(\"shoppingcart\", {c: restaurants});\n});\n**/\n\n//add code for new\napp.get('/new', function(req, res){\n\tres.sendFile(__dirname + '/public/new.html');\n});\n\n//add code for create new\n//may need to fit the request as: POST /api/create\napp.post('/create', function(req, res){\n        //do sth to create\n    var mimetype = null; //added at 2353\n\tvar r = {};  // new restaurant to be inserted\n\tr['address'] = {};\n\tr.address.street = (req.body.street != null) ? req.body.street : null;\n\tr.address.zipcode = (req.body.zipcode != null) ? req.body.zipcode : null;\n\tr.address.building = (req.body.building != null) ? req.body.building : null;\n\tr.address['coord'] = [];\n\tr.address.coord.push(req.body.lon);\n\tr.address.coord.push(req.body.lat);\n\tr['borough'] = (req.body.borough != null) ? req.body.borough : null;\n\tr['cuisine'] = (req.body.cuisine != null) ? req.body.cuisine : null;\n\tr['name'] = (req.body.name != null) ? req.body.name : null;\n\tr['photo'] = {};\n\tr.photo.mimetype = (req.files.mimetype != null) ? req.files.mimetype : null;\n\tr.photo.data = (req.files.data != null) ? req.files.data : null;\n\tr['username'] = req.session.userid;\n\n\tMongoClient.connect(mongourl, function(err, db) {\n\t\tassert.equal(err,null);\n\t\tconsole.log('Connected to MongoDB\\n');\n\t\tdb.collection('restaurants').insertOne(r,\n\t\t\tfunction(err,result) {\n\t\t\t\tassert.equal(err,null);\n\t\t\t\tconsole.log(\"insertOne() was successful _id = \" +\n\t\t\t\t\tJSON.stringify(result.insertedId));\n\t\t\t\tdb.close();\n\t\t\t\tconsole.log('Disconnected from MongoDB\\n');\n\t\t\t\tres.writeHead(200, {\"Content-Type\": \"text/plain\"});\n\t\t\t\tres.end('Insert was successful ' + JSON.stringify(r));\n\t\t\t});\n\t});\n\tres.render('details', {restaurants : r});\n});\n\napp.get('/change', function(req, res){\n\tMongoClient.connect(mongourl, function(err, db) {\n\t\tconsole.log('Connected to MongoDB\\n');\n\t\tvar a_r = null;\n\t\t\tdb.collection('restaurants').find().toArray(function(err, result){\n\t\t\tif (req.query.id != null) {\n\t\t\t\tfor (var i=0; i<result.length; i++) {\n\t\t\t\t\tif (result[i]._id == req.query.id) {\n\t\t\t\t\t\ta_r = result[i];\n\t\t\t\t\t\tbreak;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tif (result != null) {\n\t\t\t\t\tconsole.log('You are:' + login_id);\n\t\t\t\t\tconsole.log('right userid:' + a_r.username);\n\t\t\t\t\tif (a_r != null) {\n\t\t\t\t\t\tif (a_r.username == login_id) {\n\t\t\t\t\t\t\tres.sendFile(__dirname + '/public/change.html');\n\t\t\t\t\t\t\tdb.close();\n\t\t\t\t\t\t\tconsole.log('Disconnected from MongoDB\\n');\n\t\t\t\t\t\t} else {\n\t\t\t\t\t\t\tres.status(500).end('You are not authorized to edit!');\n\t\t\t\t\t\t}\n\t\t\t\t\t} else {\n\t\t\t\t\t\tres.status(500).end('userid missing!');\n\t\t\t\t\t}\n\t\t\t\t} else {\n\t\t\t\t\tres.status(500).end(req.query.id + ' not found!');\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tres.status(500).end('id missing!');\n\t\t\t}\n\t});\n\t});\n});\n\napp.post('/change', function(req, res){\n\tlogin_id = req.session.userid;\n\tvar mimetype = null; //added at 2353\n\tvar r = {};  \n\tr['address'] = {};\n\tr.address.street = (req.body.street != null) ? req.body.street : null;\n\tr.address.zipcode = (req.body.zipcode != null) ? req.body.zipcode : null;\n\tr.address.building = (req.body.building != null) ? req.body.building : null;\n\tr.address['coord'] = [];\n\tr.address.coord.push(req.body.lon);\n\tr.address.coord.push(req.body.lat);\n\tr['borough'] = (req.body.borough != null) ? req.body.borough : null;\n\tr['cuisine'] = (req.body.cuisine != null) ? req.body.cuisine : null;\n\tr['name'] = (req.body.name != null) ? req.body.name : null;\n\tr['photo'] = {};\n\tr.photo.mimetype = (req.files.mimetype != null) ? req.files.mimetype : null;\n\tr.photo.data = (req.files.data != null) ? req.files.data : null;\n\tr['username'] = (login_id != null) ? login_id : null; \n\n\tMongoClient.connect(mongourl, function(err, db) {\n\t\tconsole.log('Connected to MongoDB\\n');\n\t\tdb.collection('restaurants').save(\n\t\t\t{_id : ObjectId, name : r.name, cuisine : r.cuisine, address : r.address, mimetype : r.mimetype, photo : r.photo, username : login_id});\n\t\tconsole.log('updated\\n');\n\t\tdb.close();\n\t\tconsole.log('Disconnected from MongoDB\\n');\n\t\tconsole.log(\"update() was successful _id = \");\n\t\tres.render('details', {restaurants: r});\n\t});\n});\n\napp.get('/rate', function(req, res){\n\tres.sendFile(__dirname + '/public/rate.html');\n});\n\napp.post('/rate',function(req,res) {\n\t\n\tres.render('details', {restaurants: r, rate: []});\n});\n\napp.listen(process.env.PORT || 8099);\n",
+					"file": "/home/developer/project381-1/server.js",
+					"file_size": 8209,
+					"file_write_time": 131253618382819965,
+					"settings":
+					{
+						"buffer_size": 8209,
+						"encoding": "UTF-8",
+						"line_ending": "Unix"
+					}
+				},
+				{
+					"file": "/home/developer/project381/project381-1/server.js",
+					"settings":
+					{
+						"buffer_size": 7293,
+						"encoding": "UTF-8",
+						"line_ending": "Unix"
+					}
+				},
+				{
+					"contents": "<HTML>\n<head>\n  <title><%= restaurants.name %></title>\n  <!--add code[Googlemap]-->\n  <!--script for google map??-->\n  <!--end add code-->\n</head>\n<BODY>\n<H2><%= restaurants.name %></H2>\n<% if (restaurants.photo != null) { %>\n<p>\n  <img src=\"data:<%= restaurants.mimetype %>;base64,<%= restaurants.photo %>\">\n<br>\n<% } %>\n<p>Name: <%= restaurants.name %></p>\n<p>Cuisine: <%= restaurants.cuisine %></p>\n<p>Street: <%= restaurants.address.street %></p>\n<p>Building: <%= restaurants.address.building %></p>\n<p>Zipcode: <%= restaurants.address.zipcode %></p>\n<p>GPS: [ <%= restaurants.address.coord[0] %>,  <%=restaurants.address.coord[1] %> ]</p>\n<p>Rating: <ol><li> <%=restaurants.rate %></li></ol></p>\n<p>Created by: <%=restaurants.username %></p>\n\n\n<!--Googlemap-->\n<p>Google map: coming soon(map will be shown in here)</p>\n<!--Googlemap-->\n\n<!--<a href/add2cart?id=<%= restaurants.id %>>add to shopping cart</a>-->\n<a href=/rate>Rate</a>\n<a href=/change?id=<%= restaurants._id %>>Edit</a>\n<a href=/remove>Delete</a>\n<a href=/list>Go Back</a>\n\n\n</BODY>\n</HTML>\n",
+					"file": "/home/developer/project381-1/views/details.ejs",
+					"file_size": 1061,
+					"file_write_time": 131253441330309286,
+					"settings":
+					{
+						"buffer_size": 1061,
+						"line_ending": "Unix"
+					}
+				}
+			],
+			"build_system": "",
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
+			"command_palette":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"console":
+			{
+				"height": 0.0,
+				"history":
+				[
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"file_history":
+			[
+				"/home/developer/project381/server.js",
+				"/home/developer/project381-1/server.js",
+				"/home/developer/COMPS381F-test/restaurants/untitled.html",
+				"/home/developer/LOKTING/COMPS381F-test/restaurants/server.js",
+				"/home/developer/LOKTING/COMPS381F-test/restaurants/views/change.ejs",
+				"/home/developer/COMPS381F/login/public/login.html",
+				"/home/developer/COMPS381F/login/server.js",
+				"/home/developer/COMPS381F-test/restaurants/server.js"
+			],
+			"find":
+			{
+				"height": 44.0
+			},
+			"find_in_files":
+			{
+				"height": 0.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+					"id",
+					"rate",
+					"usern_id",
+					"login",
+					"usern",
+					"new",
+					"login",
+					"usernam",
+					"_id:",
+					"r_id:",
+					"req.session.userid",
+					"username",
+					"change",
+					"edit",
+					"toA",
+					"to Arra",
+					"crea",
+					"_id",
+					"result",
+					"db",
+					"alert",
+					"req",
+					"change",
+					"creat",
+					"username",
+					"detai",
+					"file",
+					"files",
+					"sample",
+					"file",
+					"sampl",
+					"new",
+					"name",
+					"photo",
+					"logi"
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": false,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"show_context": true,
+				"use_buffer2": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"groups":
+			[
+				{
+					"selected": 2,
+					"sheets":
+					[
+						{
+							"buffer": 0,
+							"file": "/home/developer/project381/package.json",
+							"semi_transient": false,
+							"settings":
+							{
+								"buffer_size": 0,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										0,
+										0
+									]
+								],
+								"settings":
+								{
+									"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+									"tab_size": 4,
+									"translate_tabs_to_spaces": true
+								},
+								"translation.x": 0.0,
+								"translation.y": 0.0,
+								"zoom_level": 1.0
+							},
+							"stack_index": 2,
+							"type": "text"
+						},
+						{
+							"buffer": 1,
+							"file": "/home/developer/project381-1/server.js",
+							"semi_transient": false,
+							"settings":
+							{
+								"buffer_size": 8209,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										1930,
+										1930
+									]
+								],
+								"settings":
+								{
+									"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+									"translate_tabs_to_spaces": false
+								},
+								"translation.x": 0.0,
+								"translation.y": 1459.0,
+								"zoom_level": 1.0
+							},
+							"stack_index": 1,
+							"type": "text"
+						},
+						{
+							"buffer": 2,
+							"file": "/home/developer/project381/project381-1/server.js",
+							"semi_transient": false,
+							"settings":
+							{
+								"buffer_size": 7293,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										2268,
+										2268
+									]
+								],
+								"settings":
+								{
+									"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+									"translate_tabs_to_spaces": false
+								},
+								"translation.x": 0.0,
+								"translation.y": 1764.0,
+								"zoom_level": 1.0
+							},
+							"stack_index": 0,
+							"type": "text"
+						},
+						{
+							"buffer": 3,
+							"file": "/home/developer/project381-1/views/details.ejs",
+							"semi_transient": false,
+							"settings":
+							{
+								"buffer_size": 1061,
+								"regions":
+								{
+								},
+								"selection":
+								[
+									[
+										1061,
+										1061
+									]
+								],
+								"settings":
+								{
+									"syntax": "Packages/HTML/HTML.sublime-syntax"
+								},
+								"translation.x": 0.0,
+								"translation.y": 0.0,
+								"zoom_level": 1.0
+							},
+							"stack_index": 3,
+							"type": "text"
+						}
+					]
+				}
+			],
+			"incremental_find":
+			{
+				"height": 36.0
+			},
+			"input":
+			{
+				"height": 0.0
+			},
+			"layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			},
+			"menu_visible": true,
+			"output.find_results":
+			{
+				"height": 0.0
+			},
+			"pinned_build_system": "",
+			"position": "0,0,0,0,0,1100,171,2709,929,1920,935",
+			"project": "",
+			"replace":
+			{
+				"height": 68.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"selected_group": 0,
+			"settings":
+			{
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 150.0,
+			"status_bar_visible": true,
+			"template_settings":
+			{
+			},
+			"window_id": 2,
+			"workspace_name": ""
+		}
+	],
+	"workspaces":
+	{
+		"recent_workspaces":
+		[
+		]
+	}
+}

@@ -1,0 +1,123 @@
+2015-11-11 11:11:26,325 - softwarecenter.ui.gtk3.app - INFO - setting up proxy 'None'
+2015-11-11 11:11:28,545 - softwarecenter.region - WARNING - failed to use geoclue: 'org.freedesktop.Geoclue.Error.notAvailable: Geoclue master client has no usable Address providers'
+2015-11-11 11:11:28,746 - softwarecenter.backend.reviews - WARNING - Could not get usefulness from server, no username in config file
+2015-11-11 11:11:28,764 - softwarecenter.plugin - INFO - activating plugin '<module 'webapps_activation' from '/usr/share/software-center/softwarecenter/plugins/webapps_activation.pyc'>'
+2015-11-11 11:11:28,862 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()
+2015-11-11 11:11:33,365 - softwarecenter.backend.reviews - WARNING - error creating bsddb: '(22, 'Invalid argument -- BDB0054 illegal flag combination specified to DB_ENV->open')' (corrupted?)
+2015-11-11 11:11:33,365 - softwarecenter.backend.reviews - ERROR - trying to repair DB failed
+Traceback (most recent call last):
+  File "/usr/share/software-center/softwarecenter/backend/reviews/__init__.py", line 358, in _save_review_stats_cache_blocking
+    self._dump_bsddbm_for_unity(outfile, outdir)
+  File "/usr/share/software-center/softwarecenter/backend/reviews/__init__.py", line 377, in _dump_bsddbm_for_unity
+    0600)
+DBInvalidArgError: (22, 'Invalid argument -- BDB0054 illegal flag combination specified to DB_ENV->open')
+2015-11-11 11:11:33,399 - softwarecenter.ui.gtk3.views.lobbyview - WARNING - skipping exhibit for: 'u'leadwerks\r\nleadwerks-indie'' not available
+2015-11-11 11:11:36,073 - softwarecenter.db.pkginfo_impl.aptcache - ERROR - simulate failed
+None
+2015-11-11 11:11:40,681 - softwarecenter.db.utils - INFO - software-center-agent finished with status 0
+2015-11-11 11:12:34,467 - softwarecenter.backend - ERROR - error in _on_trans_finished 'Error: The package is of bad quality
+The installation of a package which violates the quality standards isn't allowed. This could cause serious problems on your computer. Please contact the person or organisation who provided this package file and include the details beneath.
+
+Lintian check results for /tmp/google-chrome-stable_current_amd64.deb:
+/usr/bin/ar: /tmp/temp-lintian-lab-ubOmZP_gIx/pool/g/google-chrome-stable/google-chrome-stable_46.0.2490.86-1_amd64_binary/deb: No such file or directory
+E: google-chrome-stable: malformed-deb-archive ar error: *main::STDERR
+'
+2015-11-11 11:12:37,811 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()
+2015-11-11 11:12:38,534 - softwarecenter.utils - WARNING - Could not determine the installed desktop file path for app-install desktop file: 'None'
+2015-11-11 11:12:38,535 - softwarecenter.backend.zeitgeist_logger - WARNING - Invalid desktop file provided, impossible to log event
+2015-11-11 11:13:25,136 - softwarecenter.ui.gtk3.app - INFO - setting up proxy 'None'
+2015-11-11 11:13:25,676 - softwarecenter.backend.reviews - WARNING - Could not get usefulness from server, no username in config file
+2015-11-11 11:13:25,678 - softwarecenter.plugin - INFO - activating plugin '<module 'webapps_activation' from '/usr/share/software-center/softwarecenter/plugins/webapps_activation.pyc'>'
+2015-11-11 11:13:25,816 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()
+2015-11-11 11:13:28,685 - softwarecenter.backend.reviews - WARNING - error creating bsddb: '(22, 'Invalid argument -- BDB0054 illegal flag combination specified to DB_ENV->open')' (corrupted?)
+2015-11-11 11:13:28,686 - softwarecenter.backend.reviews - ERROR - trying to repair DB failed
+Traceback (most recent call last):
+  File "/usr/share/software-center/softwarecenter/backend/reviews/__init__.py", line 358, in _save_review_stats_cache_blocking
+    self._dump_bsddbm_for_unity(outfile, outdir)
+  File "/usr/share/software-center/softwarecenter/backend/reviews/__init__.py", line 377, in _dump_bsddbm_for_unity
+    0600)
+DBInvalidArgError: (22, 'Invalid argument -- BDB0054 illegal flag combination specified to DB_ENV->open')
+2015-11-11 11:13:28,690 - softwarecenter.ui.gtk3.views.lobbyview - WARNING - skipping exhibit for: 'u'leadwerks\r\nleadwerks-indie'' not available
+2015-11-11 11:13:34,112 - softwarecenter.db.pkginfo_impl.aptcache - ERROR - simulate failed
+None
+2015-11-11 11:13:35,050 - softwarecenter.db.utils - INFO - software-center-agent finished with status 0
+2015-11-11 11:15:08,250 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()
+2015-11-11 11:15:26,249 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()
+2015-11-11 11:15:30,931 - softwarecenter.utils - WARNING - Could not determine the installed desktop file path for app-install desktop file: 'None'
+2015-11-11 11:15:30,932 - softwarecenter.backend.zeitgeist_logger - WARNING - Invalid desktop file provided, impossible to log event
+2015-11-11 11:15:30,932 - softwarecenter.backend - WARNING - _on_trans_error: 'DBusException(dbus.String(u'Message did not receive a reply (timeout by message bus)'),)' '<AptTransaction object at 0x7fae90a01780 (aptdaemon+client+AptTransaction at 0x223ac40)>' 'google-chrome-stable'
+2015-11-11 11:15:30,936 - softwarecenter.backend - WARNING - daemon dies, ignoring: <AptTransaction object at 0x7fae90a01780 (aptdaemon+client+AptTransaction at 0x223ac40)> exit-failed
+2015-11-11 11:15:30,936 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()
+2015-11-17 11:53:12,542 - softwarecenter.ui.gtk3.app - INFO - setting up proxy 'None'
+2015-11-17 11:53:13,268 - softwarecenter.region - WARNING - failed to use geoclue: 'org.freedesktop.Geoclue.Error.notAvailable: Geoclue master client has no usable Address providers'
+2015-11-17 11:53:13,561 - softwarecenter.backend.reviews - WARNING - Could not get usefulness from server, no username in config file
+2015-11-17 11:53:13,563 - softwarecenter.plugin - INFO - activating plugin '<module 'webapps_activation' from '/usr/share/software-center/softwarecenter/plugins/webapps_activation.pyc'>'
+2015-11-17 11:53:13,760 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()
+2015-11-17 11:53:16,366 - softwarecenter.backend.reviews - WARNING - error creating bsddb: '(22, 'Invalid argument -- BDB0054 illegal flag combination specified to DB_ENV->open')' (corrupted?)
+2015-11-17 11:53:16,367 - softwarecenter.backend.reviews - ERROR - trying to repair DB failed
+Traceback (most recent call last):
+  File "/usr/share/software-center/softwarecenter/backend/reviews/__init__.py", line 358, in _save_review_stats_cache_blocking
+    self._dump_bsddbm_for_unity(outfile, outdir)
+  File "/usr/share/software-center/softwarecenter/backend/reviews/__init__.py", line 377, in _dump_bsddbm_for_unity
+    0600)
+DBInvalidArgError: (22, 'Invalid argument -- BDB0054 illegal flag combination specified to DB_ENV->open')
+2015-11-17 11:53:16,701 - softwarecenter.ui.gtk3.views.lobbyview - WARNING - skipping exhibit for: 'u'leadwerks\r\nleadwerks-indie'' not available
+2015-11-17 11:53:29,616 - softwarecenter.db.utils - INFO - software-center-agent finished with status 0
+2015-11-17 11:54:57,497 - softwarecenter.utils - WARNING - could not load icon 'rkward', displaying missing icon instead: Icon 'rkward' not present in theme 
+2015-11-17 11:57:51,981 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()
+2015-11-17 11:58:03,270 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()
+2016-08-04 08:13:32,029 - softwarecenter.ui.gtk3.app - INFO - setting up proxy 'None'
+2016-08-04 08:13:35,087 - softwarecenter.region - WARNING - failed to use geoclue: 'org.freedesktop.Geoclue.Error.notAvailable: Geoclue master client has no usable Address providers'
+2016-08-04 08:13:35,640 - softwarecenter.backend.reviews - WARNING - Could not get usefulness from server, no username in config file
+2016-08-04 08:13:35,650 - softwarecenter.plugin - INFO - activating plugin '<module 'webapps_activation' from '/usr/share/software-center/softwarecenter/plugins/webapps_activation.pyc'>'
+2016-08-04 08:13:35,731 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()
+2016-08-04 08:13:39,553 - softwarecenter.backend.reviews - WARNING - error creating bsddb: '(22, 'Invalid argument -- BDB0054 illegal flag combination specified to DB_ENV->open')' (corrupted?)
+2016-08-04 08:13:39,573 - softwarecenter.backend.reviews - ERROR - trying to repair DB failed
+Traceback (most recent call last):
+  File "/usr/share/software-center/softwarecenter/backend/reviews/__init__.py", line 358, in _save_review_stats_cache_blocking
+    self._dump_bsddbm_for_unity(outfile, outdir)
+  File "/usr/share/software-center/softwarecenter/backend/reviews/__init__.py", line 377, in _dump_bsddbm_for_unity
+    0600)
+DBInvalidArgError: (22, 'Invalid argument -- BDB0054 illegal flag combination specified to DB_ENV->open')
+2016-08-04 08:13:39,604 - softwarecenter.ui.gtk3.views.lobbyview - WARNING - skipping exhibit for: 'u'leadwerks\r\nleadwerks-indie'' not available
+2016-08-04 08:13:41,385 - softwarecenter.db.pkginfo_impl.aptcache - ERROR - simulate failed
+None
+2016-08-04 08:13:42,074 - softwarecenter.backend.spawn_helper - WARNING - exit code 1 from helper for '['/usr/share/software-center/piston_generic_helper.py', '--datadir', '/usr/share/software-center/', 'SoftwareCenterRecommenderAPI', 'recommend_app', '{"pkgname": "cf-cli"}']'
+2016-08-04 08:13:42,074 - softwarecenter.backend.spawn_helper - WARNING - got error from helper: 'WARNING:__main__:404: {'status': '404', 'content-length': '55', 'via': '1.1 papeda.canonical.com:3128 (squid/2.7.STABLE7)', 'x-cache': 'MISS from papeda.canonical.com', 'x-cache-lookup': 'HIT from papeda.canonical.com:3128', 'strict-transport-security': 'max-age=2592000', 'server': 'Apache', 'etag': '"aa978a1cb6747b01e6ef150bc103d91f"', 'cache-control': 'max-age=300', 'date': 'Thu, 04 Aug 2016 00:13:41 GMT', 'content-type': 'text/html; charset=utf-8'}
+'
+2016-08-04 08:13:42,074 - softwarecenter.db.categories - WARNING - Error while accessing the recommender service: WARNING:__main__:404: {'status': '404', 'content-length': '55', 'via': '1.1 papeda.canonical.com:3128 (squid/2.7.STABLE7)', 'x-cache': 'MISS from papeda.canonical.com', 'x-cache-lookup': 'HIT from papeda.canonical.com:3128', 'strict-transport-security': 'max-age=2592000', 'server': 'Apache', 'etag': '"aa978a1cb6747b01e6ef150bc103d91f"', 'cache-control': 'max-age=300', 'date': 'Thu, 04 Aug 2016 00:13:41 GMT', 'content-type': 'text/html; charset=utf-8'}
+
+2016-08-04 08:13:42,075 - softwarecenter.ui.gtk3.widgets.recommendations - WARNING - Error while accessing the recommender agent: WARNING:__main__:404: {'status': '404', 'content-length': '55', 'via': '1.1 papeda.canonical.com:3128 (squid/2.7.STABLE7)', 'x-cache': 'MISS from papeda.canonical.com', 'x-cache-lookup': 'HIT from papeda.canonical.com:3128', 'strict-transport-security': 'max-age=2592000', 'server': 'Apache', 'etag': '"aa978a1cb6747b01e6ef150bc103d91f"', 'cache-control': 'max-age=300', 'date': 'Thu, 04 Aug 2016 00:13:41 GMT', 'content-type': 'text/html; charset=utf-8'}
+
+2016-08-04 08:13:46,377 - softwarecenter.db.utils - INFO - software-center-agent finished with status 0
+2016-08-04 08:14:09,005 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()
+2016-08-04 08:14:10,090 - softwarecenter.utils - WARNING - Could not determine the installed desktop file path for app-install desktop file: 'None'
+2016-08-04 08:14:10,090 - softwarecenter.backend.zeitgeist_logger - WARNING - Invalid desktop file provided, impossible to log event
+2016-12-03 02:47:58,157 - softwarecenter.ui.gtk3.app - INFO - setting up proxy 'None'
+2016-12-03 02:47:59,733 - softwarecenter.region - WARNING - failed to use geoclue: 'org.freedesktop.Geoclue.Error.notAvailable: Geoclue master client has no usable Address providers'
+2016-12-03 02:48:00,378 - softwarecenter.backend.reviews - WARNING - Could not get usefulness from server, no username in config file
+2016-12-03 02:48:00,384 - softwarecenter.plugin - INFO - activating plugin '<module 'webapps_activation' from '/usr/share/software-center/softwarecenter/plugins/webapps_activation.pyc'>'
+2016-12-03 02:48:00,470 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()
+2016-12-03 02:48:04,018 - softwarecenter.backend.reviews - WARNING - error creating bsddb: '(22, 'Invalid argument -- BDB0054 illegal flag combination specified to DB_ENV->open')' (corrupted?)
+2016-12-03 02:48:04,020 - softwarecenter.backend.reviews - ERROR - trying to repair DB failed
+Traceback (most recent call last):
+  File "/usr/share/software-center/softwarecenter/backend/reviews/__init__.py", line 358, in _save_review_stats_cache_blocking
+    self._dump_bsddbm_for_unity(outfile, outdir)
+  File "/usr/share/software-center/softwarecenter/backend/reviews/__init__.py", line 377, in _dump_bsddbm_for_unity
+    0600)
+DBInvalidArgError: (22, 'Invalid argument -- BDB0054 illegal flag combination specified to DB_ENV->open')
+2016-12-03 02:48:04,331 - softwarecenter.ui.gtk3.views.lobbyview - WARNING - skipping exhibit for: 'u'leadwerks\r\nleadwerks-indie'' not available
+2016-12-03 02:48:06,889 - softwarecenter.db.pkginfo_impl.aptcache - ERROR - simulate failed
+None
+2016-12-03 02:48:08,147 - softwarecenter.backend.spawn_helper - WARNING - exit code 1 from helper for '['/usr/share/software-center/piston_generic_helper.py', '--datadir', '/usr/share/software-center/', 'SoftwareCenterRecommenderAPI', 'recommend_app', '{"pkgname": "sublime-text"}']'
+2016-12-03 02:48:08,148 - softwarecenter.backend.spawn_helper - WARNING - got error from helper: 'WARNING:__main__:404: {'status': '404', 'content-length': '61', 'via': '1.1 sumac.canonical.com:3128 (squid/2.7.STABLE7)', 'x-cache': 'HIT from sumac.canonical.com', 'age': '116', 'strict-transport-security': 'max-age=2592000', 'server': 'Apache', 'etag': '"ac48fe5710ebda334744e2d913e7ba67"', 'cache-control': 'max-age=300', 'date': 'Fri, 02 Dec 2016 18:46:10 GMT', 'content-type': 'text/html; charset=utf-8', 'x-cache-lookup': 'HIT from sumac.canonical.com:3128'}
+'
+2016-12-03 02:48:08,149 - softwarecenter.db.categories - WARNING - Error while accessing the recommender service: WARNING:__main__:404: {'status': '404', 'content-length': '61', 'via': '1.1 sumac.canonical.com:3128 (squid/2.7.STABLE7)', 'x-cache': 'HIT from sumac.canonical.com', 'age': '116', 'strict-transport-security': 'max-age=2592000', 'server': 'Apache', 'etag': '"ac48fe5710ebda334744e2d913e7ba67"', 'cache-control': 'max-age=300', 'date': 'Fri, 02 Dec 2016 18:46:10 GMT', 'content-type': 'text/html; charset=utf-8', 'x-cache-lookup': 'HIT from sumac.canonical.com:3128'}
+
+2016-12-03 02:48:08,149 - softwarecenter.ui.gtk3.widgets.recommendations - WARNING - Error while accessing the recommender agent: WARNING:__main__:404: {'status': '404', 'content-length': '61', 'via': '1.1 sumac.canonical.com:3128 (squid/2.7.STABLE7)', 'x-cache': 'HIT from sumac.canonical.com', 'age': '116', 'strict-transport-security': 'max-age=2592000', 'server': 'Apache', 'etag': '"ac48fe5710ebda334744e2d913e7ba67"', 'cache-control': 'max-age=300', 'date': 'Fri, 02 Dec 2016 18:46:10 GMT', 'content-type': 'text/html; charset=utf-8', 'x-cache-lookup': 'HIT from sumac.canonical.com:3128'}
+
+2016-12-03 02:48:16,903 - softwarecenter.db.utils - INFO - software-center-agent finished with status 0
+2016-12-03 02:49:15,268 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()
+2016-12-03 02:49:16,890 - softwarecenter.utils - WARNING - Could not determine the installed desktop file path for app-install desktop file: 'None'
+2016-12-03 02:49:16,890 - softwarecenter.backend.zeitgeist_logger - WARNING - Invalid desktop file provided, impossible to log event
+2016-12-03 02:49:27,829 - softwarecenter.db.pkginfo_impl.aptcache - INFO - aptcache.open()

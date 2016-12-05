@@ -1,0 +1,41 @@
+2016/09/12-09:23:53.919 3849 Reusing MANIFEST /home/developer/.config/google-chrome/Profile 1/IndexedDB/https_drive.google.com_0.indexeddb.leveldb/MANIFEST-000001
+2016/09/12-09:23:54.455 3849 Current memtable full; waiting...
+2016/09/12-09:23:54.461 4132 Level-0 table #5: started
+2016/09/12-09:23:54.470 4132 Level-0 table #5: 597 bytes OK
+2016/09/12-09:23:54.482 4132 Delete type=0 #3
+2016/09/12-09:23:54.482 4132 Level-0 table #7: started
+2016/09/12-09:23:54.482 4132 Level-0 table #7: 0 bytes OK
+2016/09/12-09:23:54.485 4132 Delete type=0 #4
+2016/09/12-09:23:54.486 4132 Manual compaction at level-0 from '\x00\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x02\x00\x00\x00' @ 0 : 0; will stop at (end)
+2016/09/12-09:24:39.454 4132 Level-0 table #9: started
+2016/09/12-09:24:40.808 4132 Level-0 table #9: 16137768 bytes OK
+2016/09/12-09:24:40.813 4132 Delete type=0 #6
+2016/09/12-09:24:40.816 4132 Compacting 1@1 + 1@2 files
+2016/09/12-09:24:41.828 4132 Generated table #10@1: 18 keys, 16060921 bytes
+2016/09/12-09:24:41.865 4132 Generated table #11@1: 10 keys, 76597 bytes
+2016/09/12-09:24:41.865 4132 Compacted 1@1 + 1@2 files => 16137518 bytes
+2016/09/12-09:24:41.870 4132 compacted to: files[ 0 0 2 0 0 0 0 ]
+2016/09/12-09:24:41.871 4132 Delete type=2 #5
+2016/09/12-09:24:41.871 4132 Delete type=2 #9
+2016/09/12-09:29:05.133 4132 Level-0 table #13: started
+2016/09/12-09:29:06.479 4132 Level-0 table #13: 16061206 bytes OK
+2016/09/12-09:29:06.679 4132 Delete type=0 #8
+2016/09/12-09:29:06.681 4132 Compacting 1@1 + 2@2 files
+2016/09/12-09:29:09.576 4132 Generated table #14@1: 18 keys, 16060929 bytes
+2016/09/12-09:29:09.659 4132 Generated table #15@1: 10 keys, 76643 bytes
+2016/09/12-09:29:09.659 4132 Compacted 1@1 + 2@2 files => 16137572 bytes
+2016/09/12-09:29:09.669 4132 compacted to: files[ 0 0 2 0 0 0 0 ]
+2016/09/12-09:29:09.669 4132 Delete type=2 #10
+2016/09/12-09:29:09.677 4132 Delete type=2 #11
+2016/09/12-09:29:09.677 4132 Delete type=2 #13
+2016/09/12-09:44:04.524 4132 Level-0 table #17: started
+2016/09/12-09:44:05.623 4132 Level-0 table #17: 16082694 bytes OK
+2016/09/12-09:44:05.630 4132 Delete type=0 #12
+2016/09/12-09:44:05.633 4132 Compacting 1@1 + 2@2 files
+2016/09/12-09:44:06.716 4132 Generated table #18@1: 18 keys, 16064023 bytes
+2016/09/12-09:44:06.784 4132 Generated table #19@1: 10 keys, 76627 bytes
+2016/09/12-09:44:06.784 4132 Compacted 1@1 + 2@2 files => 16140650 bytes
+2016/09/12-09:44:06.787 4132 compacted to: files[ 0 0 2 0 0 0 0 ]
+2016/09/12-09:44:06.787 4132 Delete type=2 #17
+2016/09/12-09:44:06.806 4132 Delete type=2 #14
+2016/09/12-09:44:06.819 4132 Delete type=2 #15

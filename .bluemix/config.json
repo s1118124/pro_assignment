@@ -1,0 +1,19 @@
+{
+  "CliInfoEndpoint": "",
+  "CliDownloadPage": "http://clis.ng.bluemix.net",
+  "CliLatestVersion": "0.4.0",
+  "MinCliVersion": "",
+  "MinRecommendedCliVersion": "",
+  "PluginRepos": [
+    {
+      "Name": "Bluemix",
+      "Url": "https://plugins.ng.bluemix.net"
+    }
+  ],
+  "Locale": "",
+  "Trace": "",
+  "ColorEnabled": "",
+  "HTTPTimeout": 0,
+  "CheckCLIVersionDisabled": false,
+  "UsageStatsDisabled": false
+}
